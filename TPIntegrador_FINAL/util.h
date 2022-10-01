@@ -10,6 +10,5 @@ void destruirStringDinamico(char *buffer);
 void limpiarBufferTeclado();
 void presionarEnterYLimpiarPantalla();
 
-///Esto es una prueba
 
 #endif // UTIL_H_INCLUDED
