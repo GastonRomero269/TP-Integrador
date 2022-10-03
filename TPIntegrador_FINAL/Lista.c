@@ -18,13 +18,10 @@ ListaPtr crearLista()
 ListaPtr destruirLista(ListaPtr lista,bool remover)
 {
     if(remover)
-    {
         while(!listaVacia(lista))
-        {
             removerDeLista(lista,0);
-        }
-        free(lista);
-    }
+
+    free(lista);
     return FinLista; //no estaba en la implementacion del profe. Supongo que va, pero si no funca probamos sacandola
 }
 

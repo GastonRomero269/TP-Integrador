@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Files.h"
 #include "Lista.h"
 #include "Menus.h"
@@ -10,17 +11,17 @@
 DIRECTORIOS (FRANCO S.)
 
 Para crear y linkear archivos
-E:\Franco\0. UNIVERSIDAD Y APRENDIZAJE\INFORMÁTICA\¡LIC. EN SISTEMAS - UNLa\CARRERA\1ER AÑO\PROGRAMACIÓN\TP INTEGRADOR\Código - FINAL - ACTUALIZAR PEN DRIVE\V1.7\TPIntegrador_FINAL\
+E:\Franco\9. PROGRAMAS\GitHub\GitHub - Repositorios\TP-Integrador-Repositorio\TPIntegrador_FINAL\
 
 Para abrir/guardar files = CARPETA "Archivos"
-E:\Franco\0. UNIVERSIDAD Y APRENDIZAJE\INFORMÁTICA\¡LIC. EN SISTEMAS - UNLa\CARRERA\1ER AÑO\PROGRAMACIÓN\TP INTEGRADOR\Código - FINAL - ACTUALIZAR PEN DRIVE\V1.7\Archivos\
+E:\Franco\9. PROGRAMAS\GitHub\GitHub - Repositorios\TP-Integrador-Repositorio\Archivos\
 */
 
 void MAIN_MENU(CentroLogisticoPtr centroLogistico,int MAIN_OP);
 
 int main()
 {
-    CentroLogisticoPtr centroLogistico = NULL;
+    CentroLogisticoPtr centroLogistico;
 
     int MAIN_OP=0;
 
@@ -33,14 +34,19 @@ int main()
         printf("Seleccione una opcion: ");
         scanf("%d",&MAIN_OP);
 
+        limpiarBufferTeclado();
         system("cls");
+
+        if(MAIN_OP==1)
+        {
+            menuCrearNuevoCtroLogRapido(centroLogistico);
+            MAIN_MENU(centroLogistico,MAIN_OP);
+            centroLogistico=destruirCentroLogistico(centroLogistico);
+        }
+
 
         switch(MAIN_OP)
         {
-        case 1:
-            menuCrearNuevoCtroLogRapido(centroLogistico);
-            MAIN_MENU(centroLogistico,MAIN_OP);
-            break;
         case 2:
             centroLogistico = abrirTodo();
             if(centroLogistico==NULL)
@@ -49,7 +55,10 @@ int main()
                 exit(1);
             }
             else
+            {
                 MAIN_MENU(centroLogistico,MAIN_OP);
+                centroLogistico=destruirCentroLogistico(centroLogistico);
+            }
             break;
         case 0:
             printf("Hasta pronto!\n\n");
@@ -60,8 +69,6 @@ int main()
             break;
         }
     } while(MAIN_OP!=0);
-
-    centroLogistico=destruirCentroLogistico(centroLogistico);
 
     return 0;
 }

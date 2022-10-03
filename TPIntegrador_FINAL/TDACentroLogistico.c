@@ -16,15 +16,10 @@ CentroLogisticoPtr crearCentroLogistico(char *nombre,ListaPtr listaPaquetes,List
     CentroLogisticoPtr centroLogistico=(CentroLogisticoPtr)obtenerMemoria(sizeof(CentroLogistico));
     centroLogistico->nombre=crearStringDinamico(nombre);
 
-    centroLogistico->listaPaquetes=crearLista();
-    centroLogistico->listaPersonas=crearLista();
-    centroLogistico->listaVehiculos=crearLista();
-    centroLogistico->listaRepartos=crearLista();
-
-    agregarLista(centroLogistico->listaPaquetes,listaPaquetes);
-    agregarLista(centroLogistico->listaPersonas,listaPersonas);
-    agregarLista(centroLogistico->listaVehiculos,listaVehiculos);
-    agregarLista(centroLogistico->listaRepartos,listaRepartos);
+    centroLogistico->listaPaquetes=listaPaquetes;
+    centroLogistico->listaPersonas=listaPersonas;
+    centroLogistico->listaVehiculos=listaVehiculos;
+    centroLogistico->listaRepartos=listaRepartos;
 
     return centroLogistico;
 }
@@ -33,6 +28,9 @@ CentroLogisticoPtr crearCentroLogisticoRapido(char *nombre) ///Crea un centro lo
     CentroLogisticoPtr centroLogistico=(CentroLogisticoPtr)obtenerMemoria(sizeof(CentroLogistico));
 
     centroLogistico->nombre=crearStringDinamico(nombre);
+///nota: destruir el string original luego de hacer esto y ver si funca
+///Si eso funca, agergar un parámetro bool más que indique si el string recibido es dinamico o estático, así no destruimos el string aunque sea estatico.
+
     centroLogistico->listaPaquetes=crearLista();
     centroLogistico->listaPersonas=crearLista();
     centroLogistico->listaVehiculos=crearLista();

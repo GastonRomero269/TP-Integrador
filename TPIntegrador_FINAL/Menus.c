@@ -804,10 +804,11 @@ void menuModificarVehiculo(CentroLogisticoPtr centroLogistico)
 
 void menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog)
 {
-    char *nombreCtroLog = NULL;
-
-    printf("\t\tINGRESE EL NOMBRE DEL CENTRO LOGISTICO: ");
-    scanf("%[^\n]%*c",nombreCtroLog);
+    //char *nuevoNombre=(char*)obtenerMemoria(sizeof(char)*100);
+    char nuevoNombre[100];
+    printf("INGRESE EL NOMBRE DEL CENTRO LOGISTICO: ");
+    scanf("%[^\n]%*c",nuevoNombre);
     limpiarBufferTeclado();
-    ctroLog = crearCentroLogisticoRapido(nombreCtroLog);
+
+    ctroLog=crearCentroLogisticoRapido(nuevoNombre);
 }
