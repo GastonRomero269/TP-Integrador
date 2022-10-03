@@ -54,7 +54,7 @@ PENDIENTES
 - Ver como hacer para el resultado de la entrega.
 - IMPORTANTE: agregar lo que decia en las consignas del TP "El sistema no debe permitir...". Tip: es posible que necesitemos hacer más funciones de búsqueda.
 
-- Menus: agregar un submenu donde puedas elegir si queres tomar accion sobre un solo dato o un grupo de datos a la vez, para evitar tener que entrar al menu varias veces (sería tedioso). Dentro de la segunda opcion (habria una 3ra, volver), podemos elegir si queremos tomar accion de un rango de indices, o bien si queremos tomar accion sobre varios indices especificos.
+- 1. Menus: agregar un submenu donde puedas elegir si queres tomar accion sobre un solo dato o un grupo de datos a la vez, para evitar tener que entrar al menu varias veces (sería tedioso). Dentro de la segunda opcion (habria una 3ra, volver), podemos elegir si queremos tomar accion de un rango de indices, o bien si queremos tomar accion sobre varios indices especificos.
 
 - Agregar getters y setters adicionales para las subestructuras de cada estructura (domicilio, cuil o fecha, por ejemplo, agregar getters y setters a sus campos específicos) (opcional).
 

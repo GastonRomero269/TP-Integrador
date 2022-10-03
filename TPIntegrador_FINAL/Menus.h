@@ -239,5 +239,21 @@ void menuCerrarReparto(CentroLogisticoPtr centroLogistico);
 //DEVUELVE:
 void menuActualizarReparto(CentroLogisticoPtr centroLogistico);
 
+///--------------------------------------------------------------------------------------------------------------------------
+
+///                                             MENÚS DE ACCIÓN DEDICADOS A CENTROLOGISTICO
+
+///--------------------------------------------------------------------------------------------------------------------------
+
+
+//OPERACION: menú rápido de creación de centro logistico
+//PRECONDICIÓN: el centro logistico debe haber sido DECLARADO previamente y estar vacío.
+//POSTCONDICION: se pide un nombre para el nuevo centro logistico, y se crea de forma rápida con listas vacías.
+//PARÁMETROS:
+//  ctroLog: puntero a la estructura centro logístico que se desea crear
+//DEVUELVE: nada.
+void menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog);
+
+
 
 #endif // MENUS_H_INCLUDED

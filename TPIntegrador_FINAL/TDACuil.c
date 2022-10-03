@@ -56,7 +56,7 @@ void setTipo(CuilPtr cuil,int tipo)
     //Vaciamos el contenido del string
     cuil->cuil="";
     //Insertamos el nuevo numero junto con los otros 2 antiguos
-    sprintf(cuil->cuil,"%d %d %d",&tipo,&oldDni,&oldNVerif);
+    sprintf(cuil->cuil,"%d %d %d",tipo,oldDni,oldNVerif);
 }
 
 void setDni(CuilPtr cuil,int dni)
@@ -69,7 +69,7 @@ void setDni(CuilPtr cuil,int dni)
 
     cuil->cuil="";
 
-    sprintf(cuil->cuil,"%d %d %d",&tipo,&dni,&oldNVerif);
+    sprintf(cuil->cuil,"%d %d %d",oldTipo,dni,oldNVerif);
 }
 
 void setNVerificador(CuilPtr cuil,int nVerificador)
@@ -83,7 +83,7 @@ void setNVerificador(CuilPtr cuil,int nVerificador)
 
     cuil->cuil="";
 
-    sprintf(cuil->cuil,"%d %d %d",&tipo,&oldDni,&nVerificador);
+    sprintf(cuil->cuil,"%d %d %d",oldTipo,oldDni,nVerificador);
 }
 
 
@@ -178,7 +178,7 @@ Y * 4
     c) Caso contrario, XY pasa a ser (11 - Resto).
 */
 
-    char cuilStr = getCuil(cuil);
+    char *cuilStr = getCuil(cuil);
 
 //1. Obtenemos cada numero y hacemos las multiplicaciones
     int x=(int)cuilStr[0] * 5;
@@ -233,6 +233,8 @@ Y * 4
 
 void sugerirCuilValido(CuilPtr cuil)
 {
+    char *cuilStr=getCuil(cuil);
+
     if(!esCuilValido)
     {
     //1. Obtenemos cada numero y hacemos las multiplicaciones
@@ -293,6 +295,8 @@ void sugerirCuilValido(CuilPtr cuil)
 ///ADVERTENCIA: Cambia el cuil original aunque la conversion falle.
 void convertirACuilValido(CuilPtr cuil)
 {
+    char *cuilStr=getCuil(cuil);
+
     if(esCuilValido)
         printf("\n\nEl CUIL ingresado ya es valido.\n\n");
     else
@@ -379,5 +383,5 @@ void helpCuil()
 
 void mostrarCuil(CuilPtr cuil)
 {
-    printf("\tCuil: %s\n",cuil->cuil);
+    printf("\tCuil: %s\n",getCuil(cuil));
 }

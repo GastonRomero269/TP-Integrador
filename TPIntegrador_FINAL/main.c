@@ -20,11 +20,9 @@ int MAIN_MENU(CentroLogisticoPtr centroLogistico);
 
 int main()
 {
-    CentroLogisticoPtr centroLogistico;
+    CentroLogisticoPtr centroLogistico = NULL;
 
     int MAIN_OP=0;
-
-    char *nombreCtroLog; //para una de las opciones.
 
     do
     {
@@ -40,9 +38,7 @@ int main()
         switch(MAIN_OP)
         {
         case 1:
-            printf("\t\tINGRESE EL NOMBRE DEL CENTRO LOGISTICO\n\n\t\t");
-            scanf("%[^\n]%*c",nombreCtroLog);
-            centroLogistico = crearCentroLogisticoRapido(nombreCtroLog);
+            menuCrearNuevoCtroLogRapido(centroLogistico);
             MAIN_OP = MAIN_MENU(centroLogistico);
             break;
         case 2:

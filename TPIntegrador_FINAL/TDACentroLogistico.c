@@ -465,7 +465,7 @@ void ordenarPorFechaDeSalidaRepartos(CentroLogisticoPtr centroLogistico)
     while(!listaVacia(listaRepartos))
     {
         repartos[i]=getCabecera(listaRepartos);
-        PtrLista listaADestruir = listaRepartos;
+        ListaPtr listaADestruir = listaRepartos;
         listaRepartos = getResto(listaRepartos);
         i++;
     }
@@ -499,7 +499,7 @@ void ordenarPorFechaDeRetornoRepartos(CentroLogisticoPtr centroLogistico)
     while(!listaVacia(listaRepartos))
     {
         repartos[i]=getCabecera(listaRepartos);
-        PtrLista listaADestruir = listaRepartos;
+        ListaPtr listaADestruir = listaRepartos;
         listaRepartos = getResto(listaRepartos);
         i++;
     }
@@ -533,7 +533,7 @@ void ordenarPorFechaDeSalidaRetornoRepartos(CentroLogisticoPtr centroLogistico)
     while(!listaVacia(listaRepartos))
     {
         repartos[i]=getCabecera(listaRepartos);
-        PtrLista listaADestruir = listaRepartos;
+        ListaPtr listaADestruir = listaRepartos;
         listaRepartos = getResto(listaRepartos);
         i++;
     }
@@ -555,18 +555,19 @@ void ordenarPorFechaDeSalidaRetornoRepartos(CentroLogisticoPtr centroLogistico)
     listaAux=destruirLista(listaAux,true);
     listaRepartos=destruirLista(listaRepartos,true);
 }
-void ordenarPorNombreRepartosChoferes(CentroLogistico centroLogistico)
+void ordenarPorNombreRepartosChoferes(CentroLogisticoPtr centroLogistico)
 {
     int i=0;
     ListaPtr listaChoferes=crearLista();
     listaChoferes=getPersonas(centroLogistico);
+
     int longitudPersonas=longitudLista(listaChoferes);
     PersonaPtr personas[longitudPersonas];
     PersonaPtr personaAux;
     while(!listaVacia(listaChoferes))
     {
         personas[i]=getCabecera(listaChoferes);
-        PtrLista listaADestruir = listaChoferes;
+        ListaPtr listaADestruir = listaChoferes;
         listaChoferes = getResto(listaChoferes);
         i++;
     }
@@ -587,18 +588,19 @@ void ordenarPorNombreRepartosChoferes(CentroLogistico centroLogistico)
     setPersonas(centroLogistico,listaNuevaPersonas);
     listaChoferes=destruirLista(listaChoferes,true);
 }
-void ordenarPorApellidoRepartosChoferes(CentroLogistico centroLogistico)
+void ordenarPorApellidoRepartosChoferes(CentroLogisticoPtr centroLogistico)
 {
     int i=0;
     ListaPtr listaChoferes=crearLista();
     listaChoferes=getPersonas(centroLogistico);
+
     int longitudPersonas=longitudLista(listaChoferes);
     PersonaPtr personas[longitudPersonas];
     PersonaPtr personaAux;
     while(!listaVacia(listaChoferes))
     {
         personas[i]=getCabecera(listaChoferes);
-        PtrLista listaADestruir = listaChoferes;
+        ListaPtr listaADestruir = listaChoferes;
         listaChoferes = getResto(listaChoferes);
         i++;
     }
@@ -619,18 +621,19 @@ void ordenarPorApellidoRepartosChoferes(CentroLogistico centroLogistico)
     setPersonas(centroLogistico,listaNuevaPersonas);
     listaChoferes=destruirLista(listaChoferes,true);
 }
-void ordenarPorNombreApellidoRepartosChoferes(CentroLogistico centroLogistico)
+void ordenarPorNombreApellidoRepartosChoferes(CentroLogisticoPtr centroLogistico)
 {
     int i=0;
     ListaPtr listaChoferes=crearLista();
     listaChoferes=getPersonas(centroLogistico);
+
     int longitudPersonas=longitudLista(listaChoferes);
     PersonaPtr personas[longitudPersonas];
     PersonaPtr personaAux;
     while(!listaVacia(listaChoferes))
     {
         personas[i]=getCabecera(listaChoferes);
-        PtrLista listaADestruir = listaChoferes;
+        ListaPtr listaADestruir = listaChoferes;
         listaChoferes = getResto(listaChoferes);
         i++;
     }

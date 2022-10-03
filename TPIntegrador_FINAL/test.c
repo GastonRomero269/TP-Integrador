@@ -173,9 +173,9 @@ ListaPtr crearListaRepartosPorDefecto()
     DomicilioPtr dirRetiro=crearDomicilio("Deposito",5000,"Sector industrial"); /// (*)
     DomicilioPtr dirEntrega=crearDomicilio("Santa fe",1500,"Banfield"); /// (**)
 //Creamos una serie de fechas
-    FechaPtr fechaSalida=crearFecha(2459610,16,45); //Para el reparto
-    FechaPtr fechaRetorno=crearFecha(2459610,17,45); //Para el reparto
-    FechaPtr fechaEntrega=crearFecha(2459610,18,45);
+    FechaPtr fechaSalida=crearFechaDirect(2459610,16,45); //Para el reparto
+    FechaPtr fechaRetorno=crearFechaDirect(2459610,17,45); //Para el reparto
+    FechaPtr fechaEntrega=crearFechaDirect(2459610,18,45);
 //Creamos un Cuil
     CuilPtr cuil=crearCuil("20 34654754 6");
 
@@ -197,9 +197,9 @@ ListaPtr crearListaRepartosPorDefecto()
     DomicilioPtr dirRetiro1=crearDomicilio("Repositorio Intel",5000,"Sector industrial");
     DomicilioPtr dirEntrega1=crearDomicilio("Italia",3000,"Palermo");
 
-    FechaPtr fechaSalida1=crearFecha(2459300,8,30);
-    FechaPtr fechaRetorno1=crearFecha(2459610,9,30);
-    FechaPtr fechaEntrega1=crearFecha(2459610,10,30);
+    FechaPtr fechaSalida1=crearFechaDirect(2459300,8,30);
+    FechaPtr fechaRetorno1=crearFechaDirect(2459610,9,30);
+    FechaPtr fechaEntrega1=crearFechaDirect(2459610,10,30);
 
     CuilPtr cuil1=crearCuil("27 24576456 7");
 
@@ -219,9 +219,9 @@ ListaPtr crearListaRepartosPorDefecto()
     DomicilioPtr dirRetiro2=crearDomicilio("Tesla Industry",10000,"Washington DC");
     DomicilioPtr dirEntrega2=crearDomicilio("24 de mayo",3000,"Capital Federal");
 
-    FechaPtr fechaSalida2=crearFecha(2378300,19,15);
-    FechaPtr fechaRetorno2=crearFecha(2378300,21,15);
-    FechaPtr fechaEntrega2=crearFecha(2378300,22,15);
+    FechaPtr fechaSalida2=crearFechaDirect(2378300,19,15);
+    FechaPtr fechaRetorno2=crearFechaDirect(2378300,21,15);
+    FechaPtr fechaEntrega2=crearFechaDirect(2378300,22,15);
 
     CuilPtr cuil2=crearCuil("30 23456543 1");
 
