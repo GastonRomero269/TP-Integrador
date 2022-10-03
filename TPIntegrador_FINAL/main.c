@@ -3,7 +3,6 @@
 #include "Files.h"
 #include "Lista.h"
 #include "Menus.h"
-#include "TDACentroLogistico.h"
 #include "test.h"
 #include "util.h"
 
@@ -17,7 +16,7 @@ Para abrir/guardar files = CARPETA "Archivos"
 E:\Franco\0. UNIVERSIDAD Y APRENDIZAJE\INFORMÁTICA\¡LIC. EN SISTEMAS - UNLa\CARRERA\1ER AÑO\PROGRAMACIÓN\TP INTEGRADOR\Código - FINAL - ACTUALIZAR PEN DRIVE\V1.7\Archivos\
 */
 
-int MAIN_MENU(CentroLogisticoPtr centroLogistico);
+void MAIN_MENU(CentroLogisticoPtr centroLogistico,int MAIN_OP);
 
 int main()
 {
@@ -40,7 +39,7 @@ int main()
         {
         case 1:
             menuCrearNuevoCtroLogRapido(centroLogistico);
-            MAIN_OP = MAIN_MENU(centroLogistico);
+            MAIN_MENU(centroLogistico,MAIN_OP);
             break;
         case 2:
             centroLogistico = abrirTodo();
@@ -50,7 +49,7 @@ int main()
                 exit(1);
             }
             else
-                MAIN_OP = MAIN_MENU(centroLogistico);
+                MAIN_MENU(centroLogistico,MAIN_OP);
             break;
         case 0:
             printf("Hasta pronto!\n\n");
@@ -62,14 +61,16 @@ int main()
         }
     } while(MAIN_OP!=0);
 
+    centroLogistico=destruirCentroLogistico(centroLogistico);
+
     return 0;
 }
 
 
-int MAIN_MENU(CentroLogisticoPtr centroLogistico)
+void MAIN_MENU(CentroLogisticoPtr centroLogistico,int MAIN_OP)
 {
     ///Menúes
-    int MAIN_OP = 0;
+    MAIN_OP = 0;
     int op1=0;  //usamos otras para los loops internos, para evitar que,
     int op2=0;  //si queremos volver atrás, se vuelva todo atrás o cosas así.
 
@@ -416,7 +417,5 @@ int MAIN_MENU(CentroLogisticoPtr centroLogistico)
         }
     } while(MAIN_OP!=0);
 
-    centroLogistico=destruirCentroLogistico(centroLogistico);
-
-    return MAIN_OP;
+    MAIN_OP = 0;
 }
