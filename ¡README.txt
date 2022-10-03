@@ -1,5 +1,18 @@
 NOVEDADES
 
+	V1.9 (Franco)
+		- Arreglo de Errores y cambio a funciones de menus:
+			- Se arreglaron varios errores menores con el debugger y se cambiaron los menues de actualizacion de datos con las nuevas funciones y cambios al TDA Cuil.
+
+			- Menus.c: se unificaron las funciones "menuModificarCliente" y "menuModificarChofer" en una sola única funcion "menuModificarPersona", que pide un booleano para saber de que tipo de persona se trata, y desplegar distinta informacion de acuerdo a ello, lo cual reduce la carga de ejecución.
+
+			- También se agregó un nuevo menú de creacion de centro logistico de forma rápida, utilizada en el START MENU de main.c
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	Versiones anteriores (1.7, 1.8 y 1.8 (Gastón))
+
 - Agregados archivos "Files.c","Files.h".
   Contienen funciones de lectura(***) y escritura de archivos y
   variantes especiales de las estructuras utilizadas en dichas funciones.
@@ -27,20 +40,27 @@ NOVEDADES
 	- Se agrego la funcion crearPersonaDirect, la cual construye en base a puramente datos primitivos (strings, ints y bool).
 	- Se corrigio la funion crearPersona: se creaba un cuil y un domicilio llamando a sus respectivas constructoras, lo cual no era necesario y generaba trabajo extra en la ejecucion del programa (no percibido, pero existente). Ahora se asignan directamente a la estructura persona.
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
 
 BUG FIXES
 
 - Se arregló el error de las funciones de mostrar listas, que hacían que el programa crasheara luego
   de mostrar los datos.
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
+
+
+BUGS
+
+- En START MENU, opcion 1 - Soy nuevo (empezar de cero), el programa crashea luego de pedir el nombre para el nuevo centro logistico.
+
+---------------------------------------------------------------------------------------------------------------------
 
 MEJORAS
 
 - Se quitaron los varios system("pause") porque aletargaban el proceso de navegar por el menu.
 
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
 
 PENDIENTES
 

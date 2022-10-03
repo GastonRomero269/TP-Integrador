@@ -3,6 +3,7 @@
 #include "Files.h"
 #include "Lista.h"
 #include "Menus.h"
+#include "TDACentroLogistico.h"
 #include "test.h"
 #include "util.h"
 
