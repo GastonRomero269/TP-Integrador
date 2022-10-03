@@ -11,7 +11,7 @@
 
 void cargarCuil(CuilPtr cuil)
 {
-    char *strCuil = NULL;
+    char *strCuil;
 
     int i=0;
 
@@ -36,9 +36,9 @@ void cargarCuil(CuilPtr cuil)
 }
 void cargarDomicilio(DomicilioPtr domicilio)
 {
-    char *calle = NULL;
+    char *calle;
     int altura;
-    char *localidad = NULL;
+    char *localidad;
 
     printf("\n\t\tCalle y Altura [CALLE, ALTURA]: ");
     scanf("%[^,]%*c, %d",calle,&altura);
@@ -88,7 +88,7 @@ void cargarFecha(FechaPtr fecha)
 
 void actualizarCuil(CuilPtr cuil)
 {
-    char *strCuil = NULL;
+    char *strCuil;
     int i=0;
     do
     {
@@ -108,9 +108,9 @@ void actualizarCuil(CuilPtr cuil)
 }
 void actualizarDomicilio(DomicilioPtr domicilio)
 {
-    char *calle = NULL;
+    char *calle;
     int altura;
-    char *localidad = NULL;
+    char *localidad;
 
     printf("\n\t\tCalle y Altura [CALLE, ALTURA]: ");
     scanf("%[^,]%*c, %d",calle,&altura);
@@ -164,17 +164,17 @@ void menuCargarPaquete(CentroLogisticoPtr centroLogistico)
     ///Variables para funciones
     int n=0;
     ///Paquete
-    PaquetePtr paquete = NULL;
+    PaquetePtr paquete;
     int ID=0;   //el ID del paquete se genera automáticamente, no lo tiene que ingresar el usuario.
     int ancho=0;//el mismo se genera aleatoriamente.
     int alto=0;
     int largo=0;
     int peso=0;
         //Fecha
-    FechaPtr fechaEntrega = NULL;
+    FechaPtr fechaEntrega;
         //Domicilios
-    DomicilioPtr dirRetiro = NULL;
-    DomicilioPtr dirEntrega = NULL;
+    DomicilioPtr dirRetiro;
+    DomicilioPtr dirEntrega;
 //por defecto, los paquetes se cargan con el estado 0: 'en depósito'.
 
 
@@ -232,13 +232,13 @@ void menuCargarPersona(CentroLogisticoPtr centroLogistico,bool esChofer)
     ///Variables para funciones
     int n=0;
     ///Cliente
-    char *nombre = NULL;
-    char *apellido = NULL;
-    PersonaPtr persona = NULL;
+    char *nombre;
+    char *apellido;
+    PersonaPtr persona;
         //Domicilio
-    DomicilioPtr domicilio = NULL;
+    DomicilioPtr domicilio;
         //Cuil
-    CuilPtr cuil = NULL;
+    CuilPtr cuil;
 
     do
     {
@@ -307,10 +307,10 @@ void menuCargarVehiculo(CentroLogisticoPtr centroLogistico)
     int n=0;
     ///Vehiculo
     int tipoVehiculo=0;
-    char *marca = NULL;
-    char *modelo = NULL;
-    char *patente = NULL;
-    VehiculoPtr vehiculo = NULL;
+    char *marca=(char*)obtenerMemoria(sizeof(char)*100);
+    char *modelo=(char*)obtenerMemoria(sizeof(char)*100);
+    char *patente=(char*)obtenerMemoria(sizeof(char)*100);
+    VehiculoPtr vehiculo;
 
     do
     {
@@ -329,13 +329,14 @@ void menuCargarVehiculo(CentroLogisticoPtr centroLogistico)
     {
         if(n>1)
             printf("\n\nVEHICULO %d\n\n",i+1);
-        printf("\n\n");
         helpTipoVehiculo();
         printf("\n\n\tSeleccione un Tipo: ");
         scanf("%d",&tipoVehiculo);
         limpiarBufferTeclado();
-        printf("\n\tNombre del vehiculo [Marca], [Modelo]: ");
-        scanf("%[^,]%*c, %[^\n]%*c",marca,modelo);
+        printf("\n\n\tMarca: ");
+        scanf("%[^\n]%*c",marca);
+        printf("\n\tModelo: ");
+        scanf("%[^\n]%*c",modelo);
         limpiarBufferTeclado();
         printf("\n\tPatente (AA 000 AA): ");
         scanf("%[^\n]%*c",patente);
@@ -348,8 +349,13 @@ void menuCargarVehiculo(CentroLogisticoPtr centroLogistico)
         presionarEnterYLimpiarPantalla();
     }
     if(n>1)
-        printf("\nCantidad incorrecta.\n");
-    presionarEnterYLimpiarPantalla();
+    {
+        printf("\n\nVehiculos cargados exitosamente.\n\n");
+        presionarEnterYLimpiarPantalla();
+    }
+    destruirStringDinamico(marca);
+    destruirStringDinamico(modelo);
+    destruirStringDinamico(patente);
 }
 
 void menuBuscarPaquete(CentroLogisticoPtr centroLogistico)
@@ -381,7 +387,7 @@ void menuBuscarPersona(CentroLogisticoPtr centroLogistico,bool esChofer)
     int op=0;
     do
     {
-        CuilPtr cuilABuscar = NULL;
+        CuilPtr cuilABuscar;
 
         system("cls");
 
@@ -415,7 +421,7 @@ void menuBuscarVehiculo(CentroLogisticoPtr centroLogistico)
     int op=0;
     do
     {
-        char *patente = NULL;
+        char *patente;
 
         system("cls");
         printf("BUSCAR VEHICULO\n\n");
@@ -512,9 +518,9 @@ void menuModificarPaquete(CentroLogisticoPtr centroLogistico)
     int nLargo=0;
     int nPeso=0;
 
-    DomicilioPtr nuevaDirRetiro = NULL;
-    DomicilioPtr nuevaDirEntrega = NULL;
-    FechaPtr nuevaFechaEntrega = NULL;
+    DomicilioPtr nuevaDirRetiro;
+    DomicilioPtr nuevaDirEntrega;
+    FechaPtr nuevaFechaEntrega;
 
     int nEstado=0;
 
@@ -619,11 +625,11 @@ void menuModificarPersona(CentroLogisticoPtr centroLogistico,bool esChofer)
     int op=0;
     int seguirMod=0;
 
-    char *nNombre = NULL;
-    char *nApellido = NULL;
+    char *nNombre;
+    char *nApellido;
 
-    DomicilioPtr nuevoDomicilio = NULL;
-    CuilPtr nuevoCuil = NULL;
+    DomicilioPtr nuevoDomicilio;
+    CuilPtr nuevoCuil;
 
 //esChofer se puede modificar sin crear una variable
 
@@ -715,9 +721,9 @@ void menuModificarVehiculo(CentroLogisticoPtr centroLogistico)
     int seguirMod=0;
 
     int nTipo=0;
-    char *nMarca = NULL;
-    char *nModelo = NULL;
-    char *nPatente = NULL;
+    char *nMarca;
+    char *nModelo;
+    char *nPatente;
 
     system("cls");
     printf("MODIFICAR VEHICULO\n\n");
@@ -738,8 +744,9 @@ void menuModificarVehiculo(CentroLogisticoPtr centroLogistico)
         printf("\n\nQué desea modificar?\n\n");
 
         printf("1. Tipo de vehiculo\n");
-        printf("2. Marca y Modelo\n");
-        printf("3. Patente\n");
+        printf("2. Marca\n");
+        printf("3. Modelo\n");
+        printf("4. Patente\n");
 
         printf("Seleccione una opcion: ");
         scanf("%d",&op);
@@ -771,14 +778,18 @@ void menuModificarVehiculo(CentroLogisticoPtr centroLogistico)
             }
             break;
         case 2:
-            printf("\n\nIngrese la nueva marca y patente de esta forma:");
-            printf("\n\t[Marca];[Patente]\n\t");
-            scanf("%[^;]%*c;%[^\n]%*c",nMarca,nModelo);
+            printf("\n\nIngrese la nueva marca:");
+            scanf("%[^\n]%*c",nMarca);
 
             setMarca(vehiculoAModificar,nMarca);
-            setModelo(vehiculoAModificar,nModelo);
             break;
         case 3:
+            printf("\n\nIngrese el nuevo modelo:");
+            scanf("%[^\n]%*c",nModelo);
+
+            setModelo(vehiculoAModificar,nModelo);
+            break;
+        case 5:
             printf("\n\nIngrese la nueva patente (AA 111 AA):\n\t");
             scanf("%[^\n]%*c",nPatente);
             setPatente(vehiculoAModificar,nPatente);
@@ -808,14 +819,17 @@ CentroLogisticoPtr menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog)
 
     printf("INGRESE EL NOMBRE DEL CENTRO LOGISTICO: ");
     scanf("%[^\n]%*c",nuevoNombre);
-
+/*
     printf("Antes del realloc: %s\n%d\n\n",nuevoNombre,(int)strlen(nuevoNombre));
 
     nuevoNombre=realloc(nuevoNombre,sizeof(strlen(nuevoNombre)+1));
     *(nuevoNombre+(strlen(nuevoNombre)+1))=0;
 
     printf("Despues del realloc: %s\n%d\n\n",nuevoNombre,(int)strlen(nuevoNombre)+1);
+*/
+    ctroLog=crearCentroLogisticoRapido(nuevoNombre);
 
-    ctroLog=crearCentroLogisticoRapido(nuevoNombre,true);
+    destruirStringDinamico(nuevoNombre);
+
     return ctroLog;
 }

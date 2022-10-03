@@ -288,8 +288,8 @@ void fsetPersona(fPersonaPtr pfpersona,PersonaPtr persona,bool setParaGuardar)
     }
     else ///asumimos que la estructura está vacía y la creamos.
     {
-        DomicilioPtr domicilio = NULL;
-        CuilPtr cuil = NULL;
+        DomicilioPtr domicilio;
+        CuilPtr cuil;
         fsetDomicilio(fgetDomicilio(pfpersona),domicilio,false);
         fsetCuil(fgetCuilPersona(pfpersona),cuil,false);
         persona=crearPersona(fgetNombre(pfpersona),fgetApellido(pfpersona),domicilio,cuil,fgetEsChofer(pfpersona));
@@ -313,9 +313,9 @@ void fsetPaquete(fPaquetePtr pfpaquete,PaquetePtr paquete,bool setParaGuardar)
     }
     else ///asumimos que la estructura está vacía y la creamos.
     {
-        DomicilioPtr dirRetiro = NULL;
-        DomicilioPtr dirEntrega = NULL;
-        FechaPtr fechaEntrega = NULL;
+        DomicilioPtr dirRetiro;
+        DomicilioPtr dirEntrega;
+        FechaPtr fechaEntrega;
 
         fsetDomicilio(fgetDirRetiro(pfpaquete),dirRetiro,false);
         fsetDomicilio(fgetDirEntrega(pfpaquete),dirEntrega,false);
@@ -360,10 +360,10 @@ void fsetReparto(fRepartoPtr pfreparto,RepartoPtr reparto,bool setParaGuardar)
     }
     else ///asumimos que la estructura está vacía y la creamos.
     {
-        PersonaPtr chofer = NULL;
-        VehiculoPtr vehiculo = NULL;
-        FechaPtr fechaSalida = NULL;
-        FechaPtr fechaRetorno = NULL;
+        PersonaPtr chofer;
+        VehiculoPtr vehiculo;
+        FechaPtr fechaSalida;
+        FechaPtr fechaRetorno;
 
         fsetPersona(fgetChofer(pfreparto),chofer,false);
         fsetVehiculo(fgetVehiculo(pfreparto),vehiculo,false);
@@ -1102,7 +1102,7 @@ bool abrirListaPersonas(CentroLogisticoPtr centroLogistico)
         fread(&n,sizeof(int),1,archivo);
 
         fPersona fpersona;
-        PersonaPtr personaAux = NULL;
+        PersonaPtr personaAux;
 
         for(int i=0;i<n;i++)
         {
@@ -1128,7 +1128,7 @@ bool abrirListaPaquetes(CentroLogisticoPtr centroLogistico)
         fread(&n,sizeof(int),1,archivo);
 
         fPaquete fpaquete;
-        PaquetePtr paqueteAux = NULL;
+        PaquetePtr paqueteAux;
 
         for(int i=0;i<n;i++)
         {
@@ -1154,7 +1154,7 @@ bool abrirListaVehiculos(CentroLogisticoPtr centroLogistico)
         fread(&n,sizeof(int),1,archivo);
 
         fVehiculo fvehiculo;
-        VehiculoPtr vehiculoAux = NULL;
+        VehiculoPtr vehiculoAux;
 
         for(int i=0;i<n;i++)
         {
@@ -1180,7 +1180,7 @@ bool abrirListaRepartos(CentroLogisticoPtr centroLogistico)
         fread(&n,sizeof(int),1,archivo);
 
         fReparto freparto;
-        RepartoPtr repartoAux = NULL;
+        RepartoPtr repartoAux;
 
         for(int i=0;i<n;i++)
         {
@@ -1210,7 +1210,7 @@ CentroLogisticoPtr abrirTodo() //implementacion: creará un centro logistico y lo
             flag=false; ///volvemos a poner false si el archivo abre, pero está vacío por alguna razón.
     }
 
-    CentroLogisticoPtr centroLogistico = crearCentroLogisticoRapido(nombreCtroLog,false);
+    CentroLogisticoPtr centroLogistico = crearCentroLogisticoRapido(nombreCtroLog);
 
     bool res1 = abrirListaPaquetes(centroLogistico);
     bool res2 = abrirListaPersonas(centroLogistico);

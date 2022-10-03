@@ -304,6 +304,9 @@ void MAIN_MENU(CentroLogisticoPtr centroLogistico,int MAIN_OP)
                     } while(op2!=0);
                     break;
                 case 0:
+                    //guardar lista de clientes / choferes;
+                    //guardar repartos;
+
                     break;
                 default:
                     printf("\nOpcion incorrecta.\n\n");

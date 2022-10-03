@@ -70,16 +70,26 @@ PENDIENTES
   1. O bien nos quedamos con lo que tenemos, la variable int estado del paquete,
   2. O bien agregamos un string aparte. Tip: hay un motivo de entrega solo si hay un problema con dicha entrega, lo que quiere decir que sería un dato circunstancial. Entonces, es posible que no haga falta meterlo en una estructura, sino que los tengamos aparte.
 
-- Agregar llamado a las funciones de repartos.
-- Ver como hacer para el resultado de la entrega.
-- IMPORTANTE: agregar lo que decia en las consignas del TP "El sistema no debe permitir...". Tip: es posible que necesitemos hacer más funciones de búsqueda.
+Creamos el paquete con el campo "motivo de entrega" vacío. Luego, tendríamos que tener una funcion "agregarMotivo", recibe el string del motivo por el cual no se pudo entregar, y en el campo de la estrctura paquete, crea el string dinamicamente y le copia el contenido.
 
-- 1. Menus: agregar un submenu donde puedas elegir si queres tomar accion sobre un solo dato o un grupo de datos a la vez, para evitar tener que entrar al menu varias veces (sería tedioso). Dentro de la segunda opcion (habria una 3ra, volver), podemos elegir si queremos tomar accion de un rango de indices, o bien si queremos tomar accion sobre varios indices especificos.
+
+
+
+
+- Agregar llamado a las funciones de repartos.
+- Ver como hacer para el resultado de la entrega. (llamar a la funcion "filtrarPaquetesPorEstado")
+
+- IMPORTANTE: agregar lo que decia en las consignas del TP "El sistema debe/no debe permitir...". Tip: es posible que necesitemos hacer más funciones de búsqueda.
+	FALTAN: debe permitir: 5 Y 6
+		    no debe permitir: 1, 2, 4 y 5
+
+- Menus: agregar un submenu donde puedas elegir si queres tomar accion sobre un solo dato o un grupo de datos a la vez, para evitar tener que entrar al menu varias veces (sería tedioso). Dentro de la segunda opcion (habria una 3ra, volver), podemos elegir si queremos tomar accion de un rango de indices, o bien si queremos tomar accion sobre varios indices especificos.
 
 - Agregar getters y setters adicionales para las subestructuras de cada estructura (domicilio, cuil o fecha, por ejemplo, agregar getters y setters a sus campos específicos) (opcional).
 
 - Agregar funciones de ordenamiento.
-
-- Agregar funcion de ordenamiento de repartos por fecha de salida y/o de retorno
+	FALTAN: 
+		Ordenar paquetes por ID (opcional)
+		Ordenar Vehiculos alfabeticamente por marca
 
 - ARREGLAR POSIBLES BUGS :(
