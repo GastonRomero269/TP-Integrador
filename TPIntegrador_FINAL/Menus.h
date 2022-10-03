@@ -251,8 +251,8 @@ void menuActualizarReparto(CentroLogisticoPtr centroLogistico);
 //POSTCONDICION: se pide un nombre para el nuevo centro logistico, y se crea de forma rápida con listas vacías.
 //PARÁMETROS:
 //  ctroLog: puntero a la estructura centro logístico que se desea crear
-//DEVUELVE: nada.
-void menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog);
+//DEVUELVE: puntero al centro logístico creado.
+CentroLogisticoPtr menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog);
 
 
 

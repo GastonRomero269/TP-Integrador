@@ -39,7 +39,7 @@ int main()
 
         if(MAIN_OP==1)
         {
-            menuCrearNuevoCtroLogRapido(centroLogistico);
+            centroLogistico=menuCrearNuevoCtroLogRapido(centroLogistico);
             MAIN_MENU(centroLogistico,MAIN_OP);
             centroLogistico=destruirCentroLogistico(centroLogistico);
         }

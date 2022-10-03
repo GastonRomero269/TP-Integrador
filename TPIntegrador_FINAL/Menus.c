@@ -802,13 +802,20 @@ void menuModificarVehiculo(CentroLogisticoPtr centroLogistico)
 
 
 
-void menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog)
+CentroLogisticoPtr menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog)
 {
-    //char *nuevoNombre=(char*)obtenerMemoria(sizeof(char)*100);
-    char nuevoNombre[100];
+    char *nuevoNombre=(char*)obtenerMemoria(sizeof(char)*100);
+
     printf("INGRESE EL NOMBRE DEL CENTRO LOGISTICO: ");
     scanf("%[^\n]%*c",nuevoNombre);
-    limpiarBufferTeclado();
 
-    ctroLog=crearCentroLogisticoRapido(nuevoNombre);
+    printf("Antes del realloc: %s\n%d\n\n",nuevoNombre,(int)strlen(nuevoNombre));
+
+    nuevoNombre=realloc(nuevoNombre,sizeof(strlen(nuevoNombre)+1));
+    *(nuevoNombre+(strlen(nuevoNombre)+1))=0;
+
+    printf("Despues del realloc: %s\n%d\n\n",nuevoNombre,(int)strlen(nuevoNombre)+1);
+
+    ctroLog=crearCentroLogisticoRapido(nuevoNombre,true);
+    return ctroLog;
 }

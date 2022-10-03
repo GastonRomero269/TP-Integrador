@@ -38,7 +38,7 @@ CentroLogisticoPtr crearCentroLogistico(char *nombre,ListaPtr listaPaquetes,List
 //Parámetros:
 // nombre del centro logístico
 //Devuelve un puntero de la estructura creada.
-CentroLogisticoPtr crearCentroLogisticoRapido(char *nombre); ///Crea un centro logístico con un nombre y listas vacías.
+CentroLogisticoPtr crearCentroLogisticoRapido(char *nombre,bool esStringDinamico); ///Crea un centro logístico con un nombre y listas vacías.
 //Operación: Destruye la estructura de centro logistico.
 //Precondición: Que la estructura de centro logistico haya sido creada.
 //Postcondición: Se destruye el centro logistico y se libera la memoria utilizada.

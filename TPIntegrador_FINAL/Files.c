@@ -1210,7 +1210,7 @@ CentroLogisticoPtr abrirTodo() //implementacion: creará un centro logistico y lo
             flag=false; ///volvemos a poner false si el archivo abre, pero está vacío por alguna razón.
     }
 
-    CentroLogisticoPtr centroLogistico = crearCentroLogisticoRapido(nombreCtroLog);
+    CentroLogisticoPtr centroLogistico = crearCentroLogisticoRapido(nombreCtroLog,false);
 
     bool res1 = abrirListaPaquetes(centroLogistico);
     bool res2 = abrirListaPersonas(centroLogistico);
