@@ -891,7 +891,7 @@ void menuArmarReparto(CentroLogisticoPtr centroLogistico)
             mostrarPaquetes(centroLogistico);
             if(cantPaquetesElegidos>1)
                 printf("\n\nPaquete N. %d\n",j+1);
-            printf("\n\nSeleccione el paquete a cargar ingresando su indice: ");
+            printf("Seleccione el paquete a cargar ingresando su indice: ");
             scanf("%d",&k);
             limpiarBufferTeclado();
             paqueteElegido=getDatoLista(getPaquetes(centroLogistico),k-1);
@@ -910,9 +910,108 @@ void menuArmarReparto(CentroLogisticoPtr centroLogistico)
         printf("Repartos cargados exitosamente.\n\n");
 }
 void menuBuscarReparto(CentroLogisticoPtr centroLogistico);
+void menuEliminarReparto(CentroLogisticoPtr centroLogistico);
 void menuCerrarReparto(CentroLogisticoPtr centroLogistico);
 void menuActualizarReparto(CentroLogisticoPtr centroLogistico);
+int menuMostrarRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
+{
+	int op=0;
+	int op1=0;
 
+	int i=0;
+	int n=longitudLista(getRepartos(centroLogistico,esRepartoAbierto));
+
+    do
+    {
+        system("cls");
+        if(esRepartoAbierto)
+            printf("REPARTOS ABIERTOS\n\n");
+        else
+            printf("REPARTOS CERRADOS\n\n");
+
+        printf("1. Mostrar reparto individual\n");
+        printf("2. Mostrar listado completo\n");
+        printf("3. Ordenar y mostrar...\n");
+        printf("0. Volver\n\n");
+        printf("Elija una opcion:");
+        scanf("%d",&op);
+        limpiarBufferTeclado();
+
+        system("cls");
+        switch(op)
+        {
+        case 1:
+            do
+            {
+                mostrarRepartos(centroLogistico,esRepartoAbierto);
+
+                printf("\nSeleccione un reparto para mostrar:");
+                scanf("%d",&i);
+                limpiarBufferTeclado();
+                if(i<=0 || i>=n)
+                    printf("\n\nERROR: indice inexistente. Vuelva a ingresarlo.\n\n");
+                presionarEnterYLimpiarPantalla();
+            } while(i>0 && i<n);
+
+            mostrarReparto(getDatoLista(getRepartos(centroLogistico,esRepartoAbierto),i-1));
+
+            presionarEnterYLimpiarPantalla();
+            break;
+        case 2:
+            mostrarRepartos(centroLogistico, esRepartoAbierto);
+            presionarEnterYLimpiarPantalla();
+            break;
+        case 3:
+
+            do
+            {
+
+                printf("ORDENAR Y MOSTRAR POR...");
+
+                printf("1. Ordenar listado por fecha de salida y mostrar\n");
+                printf("2. Ordenar listado por fecha de retorno y mostrar\n");
+                printf("3. Ordenar listado por fecha de salida y retorno y mostrar\n");
+                printf("4. Ordenar listado por nombre del chofer y mostrar\n");
+                printf("5. Ordenar listado por apellido del chofer y mostrar\n");
+                printf("6. Ordenar listado por nombre y apellido del chofer y mostrar\n");
+                printf("0. Volver\n\n");
+
+                printf("Elija una opcion: ");
+                scanf("%d".&op1);
+
+                system("cls");
+                switch(op1)
+                {
+                case 1:
+                    ordenarPorF
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 0:
+                    break;
+                default:
+                    break;
+                }
+
+                system("cls");
+            } while(op1!=0);
+            ordenarPorFechaRepartos(centroLogistico);
+            mostrarRepartos(centroLogistico, esRepartoAbierto);
+            presionarEnterYLimpiarPantalla();
+            break;
+        }
+    } while(op!=0);
+
+    return op;
+}
 
 
 CentroLogisticoPtr menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog)

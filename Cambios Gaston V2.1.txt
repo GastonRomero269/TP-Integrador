@@ -14,6 +14,7 @@
 //Devuelve true si se pudo guardar exitosamente, false en caso contrario
 bool guardarListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
 
+
 //Funcion de lectura
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: lee las estructuras reparto que hayan sido grabadas en el archivo segun la variable
@@ -23,6 +24,7 @@ bool guardarListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbie
 //valor booleano que define si se quiere acceder a los repartos abiertos o cerrados: true:false
 //Devuelve true si se pudo leer exitosamente, false en caso contrario
 bool abrirListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -43,6 +45,7 @@ void ordenarPorMarca(CentroLogisticoPtr centroLogistico);
 //Parametros: puntero a la estructura centro logistico
 //Devuelve vacio
 void ordenarPorID(CentroLogisticoPtr centroLogistico);
+
 
 //Funcion getter
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
@@ -86,9 +89,11 @@ void mostrarRepartos(CentroLogisticoPtr centroLogistico, bool repartosAbiertos);
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: remueve de la lista de repartosAbiertos de centroLogistico un reparto 
 //seleccionado por el usuario, desplazando el reparto a listaRepartosCerrados
-//Parametros: puntero a la estructura centro logistico
+//Parametros:
+//  centroLogistico: puntero a la estructura centro logistico
+//  posicion: entero representando la posicion del reparto a cerrar.
 //Devuelve vacio
-void cerrarReparto(CentroLogisticoPtr centroLogistico);
+void cerrarReparto(CentroLogisticoPtr centroLogistico, int posicion);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -108,7 +113,7 @@ void menuMostrarRepartos(CentroLogisticoPtr centroLogistico);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-					CENTROLOGISTICO.H
+					CENTROLOGISTICO.C
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -351,6 +356,8 @@ void cerrarReparto(CentroLogisticoPtr centroLogistico)
 	listaRepartosAbiertos = destruirLista(listaRepartosAbiertos, false);
 }
 
+**************************PENDIENTE**************************
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 					MENUES.C
@@ -446,3 +453,5 @@ void menuMostrarRepartos(CentroLogisticoPtr centroLogistico)
 		break;
 	}
 }
+
+****************AGREGADO DESDE ARRIBA HASTA ACÁ****************

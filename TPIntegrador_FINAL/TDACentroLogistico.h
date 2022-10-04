@@ -16,7 +16,8 @@ typedef struct CentroLogistico
     ListaPtr listaPaquetes;
     ListaPtr listaPersonas;
     ListaPtr listaVehiculos;
-    ListaPtr listaRepartos;
+    ListaPtr listaRepartosAbiertos; ///Nueva implementacion: Ahora los repartos que se cierran
+    ListaPtr listaRepartosCerrados; ///se pasan a esta lista en lugar de ser eliminados.
 } CentroLogistico;
 
 typedef CentroLogistico * CentroLogisticoPtr;
@@ -75,21 +76,24 @@ ListaPtr getPersonas(CentroLogisticoPtr centroLogistico);
 // centroLogistico: puntero a estructura que representa al centro logistico.
 //Devuelve un puntero de la estructura lista.
 ListaPtr getVehiculos(CentroLogisticoPtr centroLogistico);
-//Operación: Obtencion de la estructura de lista de vehiculos.
-//Precondición:Que centro logistico haya sido creado.
-//Postcondición:Se obtiene la lista de repartos
+//Operación: Obtencion de listas de repartos.
+//Precondición: Que centro logistico haya sido creado.
+//Postcondición: Se obtiene la lista de repartos
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve un puntero de la estructura lista.
-ListaPtr getRepartos(CentroLogisticoPtr centroLogistico);
+//  esRepartoAbierto: valor booleano:
+//      true = si se quiere obtener un reparto abierto,
+//      false = si se quiere obtener un reparto cerrado.
+//Devuelve: puntero a la lista de repartos indicada por esRepartoAbierto.
+ListaPtr getRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
 
-//Operación:Asigna el nombre
+//Operación: Asigna el nombre
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: nombre cambia con el nuevo valor de nombre.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 // nombre: string representando al nuevo valor de nombre.
-//Devuelve nada
+//Devuelve: nada.
 void setNombreCentroLogistico(CentroLogisticoPtr centroLogistico,char *nombre);
 //Operación: Asigna la estructura de paquetes.
 //Precondición:Centro logistico debe haberse creado.
@@ -97,7 +101,7 @@ void setNombreCentroLogistico(CentroLogisticoPtr centroLogistico,char *nombre);
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 // listaPaquetes: puntero a estructura que representa al nuevo valor de paquetes.
-//Devuelve nada
+//Devuelve: nada.
 void setPaquetes(CentroLogisticoPtr centroLogistico,ListaPtr listaPaquetes);
 //Operación:Asigna la estructura de personas.
 //Precondición:Centro logistico debe haberse creado.
@@ -105,7 +109,7 @@ void setPaquetes(CentroLogisticoPtr centroLogistico,ListaPtr listaPaquetes);
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 // listaPersonas: puntero a estructura que representa al nuevo valor de personas.
-//Devuelve nada
+//Devuelve: nada.
 void setPersonas(CentroLogisticoPtr centroLogistico,ListaPtr listaPersonas);
 //Operación:Asigna la estructura de vehiculos.
 //Precondición:Centro logistico debe haberse creado.
@@ -113,44 +117,47 @@ void setPersonas(CentroLogisticoPtr centroLogistico,ListaPtr listaPersonas);
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 // listaPaquetes: puntero a estructura que representa al nuevo valor de vehiculos.
-//Devuelve nada
+//Devuelve: nada.
 void setVehiculos(CentroLogisticoPtr centroLogistico,ListaPtr listaVehiculos);
-//Operación:Asigna la estructura de repartos.
-//Precondición:Centro logistico debe haberse creado.
-//Postcondición: repartos cambia con el nuevo valor de repartos.
+//Operación: Asigna la estructura de repartos.
+//Precondición: Centro logistico debe haberse creado.
+//Postcondición: la lista de repartos seleccionada cambia con el nuevo valor de repartos.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-// listaRepartos: puntero a estructura que representa al nuevo valor de repartos.
-//Devuelve nada
-void setRepartos(CentroLogisticoPtr centroLogistico,ListaPtr listaRepartos);
+//  esRepartoAbierto: valor booleano:
+//      true = si se quiere asignar un reparto abierto,
+//      false = si se quiere asignar un reparto cerrado.
+// repartos: puntero a estructura que representa al nuevo valor de repartos.
+//Devuelve: nada.
+void setRepartos(CentroLogisticoPtr centroLogistico, ListaPtr repartos, bool esRepartoAbierto);
 
 //Operación: Muestra los paquetes.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: Imprime la lista de paquetes.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void mostrarPaquetes(CentroLogisticoPtr centroLogistico);
 //Operación: Muestra las personas.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: Imprime la lista de personas.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void mostrarPersonas(CentroLogisticoPtr centroLogistico);
 //Operación: Muestra los clientes.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: Imprime la lista de clientes.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void mostrarClientes(CentroLogisticoPtr centroLogistico); //busca y muestra solo las personas cuyo esChofer==false.
 //Operación: Muestra los choferes.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: Imprime la lista de choferes.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void mostrarChoferes(CentroLogisticoPtr centroLogistico); //busca y muestra solo las personas cuyo esChofer==true.
 
 //Operación: Muestra los vehiculos.
@@ -158,22 +165,25 @@ void mostrarChoferes(CentroLogisticoPtr centroLogistico); //busca y muestra solo
 //Postcondición: Imprime la lista de vehiculos.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void mostrarVehiculos(CentroLogisticoPtr centroLogistico);
 //Operación: Muestra los repartos.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: Imprime la lista de repartos.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
-void mostrarRepartos(CentroLogisticoPtr centroLogistico);
+//  esRepartoAbierto: valor booleano:
+//      true = si se quiere mostrar un reparto abierto,
+//      false = si se quiere mostrar un reparto cerrado.
+//Devuelve: nada.
+void mostrarRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
 //Operación: Muestra los paquetes con el estado que le haya pasado.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: Imprime los paquetes con la condicion que se les haya pasado.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 // estado: entero que representa el estado del paquete. 0:en deposito 1:en curso 2:retirado  3:entregado 4:demorado 5:suspendido
-//Devuelve nada
+//Devuelve: nada.
 void filtrarPaquetes(CentroLogisticoPtr centroLogistico,int estado); //filtra los paquetes que se muestran por el estado indicado. Ver: TDAPaquete.h>>>Funcion helpEstadoPaquete().
 
 //Operación: Muestra los paquetes con el estado que le haya pasado.
@@ -208,7 +218,7 @@ bool buscarVehiculo(CentroLogisticoPtr centroLogistico,char *patente);
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 // paquete: puntero a estructura que representa al nuevo paquete.
-//Devuelve nada
+//Devuelve: nada.
 void agregarPaquete(CentroLogisticoPtr centroLogistico,PaquetePtr paquete);
 //Operación: Agrega una nueva persona.
 //Precondición: Centro logistico debe haberse creado.
@@ -216,7 +226,7 @@ void agregarPaquete(CentroLogisticoPtr centroLogistico,PaquetePtr paquete);
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 // persona: puntero a estructura que representa a la nueva persona.
-//Devuelve nada
+//Devuelve: nada.
 void agregarPersona(CentroLogisticoPtr centroLogistico,PersonaPtr persona);
 //Operación: Agrega un nuevo vehiculo.
 //Precondición: Centro logistico debe haberse creado.
@@ -224,16 +234,19 @@ void agregarPersona(CentroLogisticoPtr centroLogistico,PersonaPtr persona);
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 // vehiculo: puntero a estructura que representa al nuevo vehiculo.
-//Devuelve nada
+//Devuelve: nada.
 void agregarVehiculo(CentroLogisticoPtr centroLogistico,VehiculoPtr vehiculo);
 //Operación: Agrega un nuevo reparto.
 //Precondición: Centro logistico debe haberse creado.
-//Postcondición: El centro logistico va a tener un nuevo reparto.
+//Postcondición: La lista de repartos correspondiente tendrá un nuevo reparto.
 //Parámetros:
-// centroLogistico: puntero a estructura que representa al centro logistico.
-// reparto: puntero a estructura que representa al nuevo reparto.
-//Devuelve nada
-void agregarReparto(CentroLogisticoPtr centroLogistico,RepartoPtr reparto);
+//  centroLogistico: puntero a estructura que representa al centro logistico.
+//  esRepartoAbierto: valor booleano:
+//      true = si se quiere agregar un reparto abierto,
+//      false = si se quiere agregar un reparto cerrado.
+//  reparto: puntero a estructura que representa al nuevo reparto.
+//Devuelve: nada.
+void agregarReparto(CentroLogisticoPtr centroLogistico,RepartoPtr reparto, bool esRepartoAbierto);
 
 //-----------------------------------------Funciones de inserción a la lista--------------------------------------------------
 //Operación: Inserta un paquete en la posicion de la lista pasada por referencia.
@@ -302,9 +315,22 @@ VehiculoPtr removerVehiculo(CentroLogisticoPtr centroLogistico,int posicion);
 //Postcondición: El reparto de la posicion pasada por referencia se remueve.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
+//  esRepartoAbierto: valor booleano:
+//      true = si se quiere remover un reparto abierto,
+//      false = si se quiere remover un reparto cerrado.
 // posicion: entero que representa la posicion.
 //Devuelve un puntero a la estructura.
-RepartoPtr removerReparto(CentroLogisticoPtr centroLogistico,int posicion);
+RepartoPtr removerReparto(CentroLogisticoPtr centroLogistico,int posicion,bool esRepartoAbierto);
+
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: remueve de la lista de repartosAbiertos de centroLogistico un reparto
+//               seleccionado por el usuario, desplazando el reparto a listaRepartosCerrados
+//Parámetros:
+//  centroLogistico: puntero a estructura que representa al centro logistico.
+//  posicion: entero representando la posicion del reparto a cerrar.
+//Devuelve: nada.
+void cerrarReparto(CentroLogisticoPtr centroLogistico, int posicion);
+
 //---------------------------------------Funciones para resetear listas------------------------------------------------
 
 ///Precondición: debe existir una funcion de destruccion para cada tipo de dato.
@@ -313,29 +339,88 @@ RepartoPtr removerReparto(CentroLogisticoPtr centroLogistico,int posicion);
 //Postcondición: La estructura pasada por referencia no existe.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void resetearPaquetes(CentroLogisticoPtr centroLogistico);
 //Operación: Elimina la lista de personas.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: La estructura pasada por referencia no existe.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void resetearPersonas(CentroLogisticoPtr centroLogistico);
 //Operación: Elimina la lista de vehiculos.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: La estructura pasada por referencia no existe.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void resetearVehiculos(CentroLogisticoPtr centroLogistico);
 //Operación: Elimina la lista de repartos.
 //Precondición: Centro logistico debe haberse creado.
 //Postcondición: La estructura pasada por referencia no existe.
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
-//Devuelve nada
+//Devuelve: nada.
 void resetearRepartos(CentroLogisticoPtr centroLogistico);
+//---------------------------------------Funciones de ordenamiento------------------------------------------------
+
+//Operación: ordena una lista de vehiculos por marca, alfabéticamente
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: setea dentro de centro logistico todos los vehiculos ordenados alfabeticamente
+//Parametros: puntero a la estructura centro logistico
+//Devuelve: nada
+void ordenarPorMarca(CentroLogisticoPtr centroLogistico);
+
+//Operación: ordena una lista de paquetes por ID, de menor a mayor
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun su ID
+//Parametros: puntero a la estructura centro logistico
+//Devuelve: nada
+void ordenarPorID(CentroLogisticoPtr centroLogistico);
+
+
+//Operación: ordena una lista de repartos por fecha de salida, de X a Y.
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados
+//               segun su fecha de salida
+//Parametros: puntero a la estructura centro logistico
+//Devuelve: nada
+void ordenarPorFechaDeSalida(CentroLogisticoPtr centroLogistico);
+//Operación: ordena una lista de repartos por fecha de retorno, de X a Y.
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados
+//               segun su fecha de retorno
+//Parametros: puntero a la estructura centro logistico
+//Devuelve: nada
+void ordenarPorFechaDeRetorno(CentroLogisticoPtr centroLogistico);
+//Operación: ordena una lista de repartos por fecha de salida y retorno, de X a Y.
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados
+//               segun su fecha de salida y retorno
+//Parametros: puntero a la estructura centro logistico
+//Devuelve: nada
+void ordenarPorFechaRepartos(CentroLogisticoPtr centroLogistico);
+//Operación: ordena una lista de repartos alfabéticamente por nombre del chofer.
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun el
+//               nombre del chofer
+//Parametros: puntero a la estructura centro logistico
+//Devuelve: nada
+void ordenarPorNombreChoferRepartos(CentroLogisticoPtr centroLogistico);
+//Operación: ordena una lista de repartos alfabéticamente por apellido del chofer.
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun el
+//               apellido del chofer
+//Parametros: puntero a la estructura centro logistico
+//Devuelve: nada
+void ordenarPorApellidoChoferRepartos(CentroLogisticoPtr centroLogistico);
+//Operación: ordena una lista de repartos alfabéticamente por nombre y apellido del chofer.
+//Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun el
+//               nombre y el apellido del chofer
+//Parametros: puntero a la estructura centro logistico
+//Devuelve: nada
+void ordenarPorChoferRepartos(CentroLogisticoPtr centroLogistico);
 
 
 #endif // TDACENTROLOGISTICO_H_INCLUDED

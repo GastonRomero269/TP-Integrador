@@ -29,8 +29,8 @@ int main()
     do
     {
         printf("START MENU - BIENVENIDO\n\n");
-        printf("\t1. Soy nuevo - INICIAR DE CERO.\n");
-        printf("\t2. Ya he ingresado antes - ABRIR ARCHIVOS.\n");
+        printf("\t1. INICIAR DE CERO\n");
+        printf("\t2. ABRIR ARCHIVOS\n");
         printf("\t0. SALIR\n\n");
         printf("Seleccione una opcion: ");
         scanf("%d",&MAIN_OP);

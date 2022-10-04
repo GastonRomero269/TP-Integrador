@@ -64,8 +64,10 @@ Creamos el paquete con el campo "motivo de entrega" vacío. Luego, tendríamos q
 - Ver como hacer para el resultado de la entrega. (llamar a la funcion "filtrarPaquetesPorEstado")
 
 - IMPORTANTE: agregar lo que decia en las consignas del TP "El sistema debe/no debe permitir...". Tip: es posible que necesitemos hacer más funciones de búsqueda.
-	FALTAN: debe permitir: 5 Y 6
+	FALTAN: debe permitir: 6
 		    no debe permitir: 1, 2, 4 y 5
+
+		- bool cuilExistente(CentroLogisticoPtr centroLogistico, PersonaPtr persona)
 
 - Menus: agregar un submenu donde puedas elegir si queres tomar accion sobre un solo dato o un grupo de datos a la vez, para evitar tener que entrar al menu varias veces (sería tedioso). Dentro de la segunda opcion (habria una 3ra, volver), podemos elegir si queremos tomar accion de un rango de indices, o bien si queremos tomar accion sobre varios indices especificos.
 

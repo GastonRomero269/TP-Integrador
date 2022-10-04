@@ -757,21 +757,33 @@ bool guardarListaVehiculos(CentroLogisticoPtr centroLogistico)
         return true;
     }
 }
-bool guardarListaRepartos(CentroLogisticoPtr centroLogistico/*,bool esRepartoAbierto*/)
+bool guardarListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
 {
-    FILE *archivo = fopen("Lista de Repartos.txt","w");
+    FILE *archivo;
+	if(esRepartoAbierto)
+		archivo = fopen("Lista de Repartos Abiertos.txt","w");
+	else
+		archivo = fopen("Lista de Repartos Cerrados.txt","w");
 
     if(archivo==NULL)
         return false;
     else
     {
     ///Como hicimos en funciones anteriores, guardamos primero la cantidad de elementos de la lista
-        int n = longitudLista(getRepartos(centroLogistico));
+        int n; ///guardamos primero la cantidad de elementos de la lista
+		if(esRepartoAbierto)
+			n = longitudLista(getRepartos(centroLogistico,true));
+		else
+			n = longitudLista(getRepartos(centroLogistico,false));
+
         fwrite(&n,sizeof(int),1,archivo);
 
         fReparto freparto;
         ListaPtr listaAux = crearLista();
-        agregarLista(listaAux , getRepartos(centroLogistico));
+        if(esRepartoAbierto)
+			agregarLista(listaAux,getRepartos(centroLogistico,true));
+		else
+			agregarLista(listaAux,getRepartos(centroLogistico,false));
 
         while(!listaVacia(listaAux))
         {
@@ -808,10 +820,10 @@ bool guardarTodo(CentroLogisticoPtr centroLogistico) //implementacion: llamará a
         fclose(archivo);
     }
     res = res && guardarListaPaquetes(centroLogistico);
-    //res1=res1 && guardarListaPersonas(centroLogistico); ///dasdlsj an
     res = res && guardarListaPersonas(centroLogistico);
     res = res && guardarListaVehiculos(centroLogistico);
-    res = res && guardarListaRepartos(centroLogistico);
+    res = res && guardarListaRepartos(centroLogistico,true);
+    res = res && guardarListaRepartos(centroLogistico,false);
 ///Un booleano almacenará el valor de verdad de los resultados de todas las funciones.
 ///De esta manera, si alguno falla, el conjugado será falso, lo retornará, y nos daremos cuenta.
     return res;
@@ -1117,7 +1129,10 @@ bool abrirListaPaquetes(CentroLogisticoPtr centroLogistico)
     FILE *archivo = fopen("Lista de Paquetes.txt","r");
 
     if(archivo==NULL)
+    {
+        printf("\n\nARCHIVO = NULL");
         return false;
+    }
     else
     {
     ///Como hicimos en funciones anteriores, recuperamos primero la cantidad de elementos de la lista
@@ -1164,9 +1179,14 @@ bool abrirListaVehiculos(CentroLogisticoPtr centroLogistico)
         return true;
     }
 }
-bool abrirListaRepartos(CentroLogisticoPtr centroLogistico)
+bool abrirListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
 {
-    FILE *archivo = fopen("Lista de Repartos.txt","r");
+    FILE *archivo;
+	if(esRepartoAbierto)
+		archivo = fopen("Lista de Repartos Abiertos.txt","r");
+	else
+		archivo = fopen("Lista de Repartos Cerrados.txt","r");
+
 
     if(archivo==NULL)
         return false;
@@ -1184,7 +1204,10 @@ bool abrirListaRepartos(CentroLogisticoPtr centroLogistico)
             fread(&freparto,sizeof(fReparto),1,archivo);
 
             fsetReparto(&freparto,repartoAux,false);
-            agregarReparto(centroLogistico,repartoAux);
+            if(esRepartoAbierto)
+                agregarReparto(centroLogistico,repartoAux,true);
+            else
+                agregarReparto(centroLogistico,repartoAux,false);
         }
         fclose(archivo);
         return true;
@@ -1212,7 +1235,8 @@ CentroLogisticoPtr abrirTodo() //implementacion: creará un centro logistico y lo
     res = res && abrirListaPaquetes(centroLogistico);
     res = res && abrirListaPersonas(centroLogistico);
     res = res && abrirListaVehiculos(centroLogistico);
-    res = res && abrirListaRepartos(centroLogistico);
+    res = res && abrirListaRepartos(centroLogistico,true);
+    res = res && abrirListaRepartos(centroLogistico,false);
 ///Un booleano almacenará el valor de verdad de los resultados de todas las funciones.
 ///De esta manera, si alguna funcion falla, la booleana será falso, y nos daremos cuenta.
     if(res)

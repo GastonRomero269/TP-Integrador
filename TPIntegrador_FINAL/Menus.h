@@ -230,6 +230,13 @@ void menuBuscarReparto(CentroLogisticoPtr centroLogistico);
 //PARÁMETROS:
 //
 //DEVUELVE:
+void menuEliminarReparto(CentroLogisticoPtr centroLogistico);
+//OPERACION:
+//PRECONDICIÓN:
+//POSTCONDICION:
+//PARÁMETROS:
+//
+//DEVUELVE:
 void menuCerrarReparto(CentroLogisticoPtr centroLogistico);
 //OPERACION:
 //PRECONDICIÓN:
@@ -238,6 +245,16 @@ void menuCerrarReparto(CentroLogisticoPtr centroLogistico);
 //
 //DEVUELVE:
 void menuActualizarReparto(CentroLogisticoPtr centroLogistico);
+
+//OPERACION: menú de muestra de repartos
+//PRECONDICIÓN: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
+//POSTCONDICION: despliega una serie de opciones de menues y submenues que permiten mostrar por
+//               pantalla los repartos abiertos y cerrados en las categorias de totales, particular, y filtrados por fecha
+//PARÁMETROS:
+//  centroLogistico: puntero a la estructura centro logistico
+//DEVUELVE: nada.
+void menuMostrarRepartos(CentroLogisticoPtr centroLogistico);
+
 
 ///--------------------------------------------------------------------------------------------------------------------------
 

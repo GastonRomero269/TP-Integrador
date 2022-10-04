@@ -20,60 +20,60 @@
 /// Para datos individuales
 //  Se pueden pensar como un portapapeles.
 
-//OPERACIÓN: Guarda un AAA en un archivo dedicado
-//PRECONDICIÓN: La variable AAAPtr que se pase deberá haber sido creada previamente con crearA.
-//POSTCONDICIÓN: se copian los contenidos de la estructura AAAPtr en una estructura estática interna "fAAA",
+//OPERACIÓN: Guarda un Cuil en un archivo dedicado
+//PRECONDICIÓN: La variable CuilPtr que se pase deberá haber sido creada previamente con crearA.
+//POSTCONDICIÓN: se copian los contenidos de la estructura CuilPtr en una estructura estática interna "fCuil",
 //               la cual se guarda posteriormente en un archivo de texto (.txt).
 //PARÁMETROS
-//  Puntero a la estructura AAA dinámica
+//  Puntero a la estructura Cuil dinámica
 //DEVUELVE: true si se pudo guardar, false de lo contrario (if archivo == NULL)
 bool guardarCuil(CuilPtr cuil);
-//OPERACIÓN: Guarda un BBB en un archivo dedicado
-//PRECONDICIÓN: La variable BBBPtr que se pase deberá haber sido creada previamente con crearB.
-//POSTCONDICIÓN: se copian los contenidos de la estructura BBBPtr en una estructura estática interna "fBBB",
+//OPERACIÓN: Guarda un Domicilio en un archivo dedicado
+//PRECONDICIÓN: La variable DomicilioPtr que se pase deberá haber sido creada previamente con crearB.
+//POSTCONDICIÓN: se copian los contenidos de la estructura DomicilioPtr en una estructura estática interna "fDomicilio",
 //               la cual se guarda posteriormente en un archivo de texto (.txt).
 //PARÁMETROS
-//  Puntero a la estructura BBB dinámica
+//  Puntero a la estructura Domicilio dinámica
 //DEVUELVE: true si se pudo guardar, false de lo contrario (if archivo == NULL)
 bool guardarDomicilio(DomicilioPtr domicilio);
-//OPERACIÓN: Guarda una CCC en un archivo dedicado
-//PRECONDICIÓN: La variable CCCPtr que se pase deberá haber sido creada previamente con crearCCC.
-//POSTCONDICIÓN: se copian los contenidos de la estructura CCCPtr en una estructura estática interna "fCCC",
+//OPERACIÓN: Guarda una Fecha en un archivo dedicado
+//PRECONDICIÓN: La variable FechaPtr que se pase deberá haber sido creada previamente con crearFecha.
+//POSTCONDICIÓN: se copian los contenidos de la estructura FechaPtr en una estructura estática interna "fFecha",
 //               la cual se guarda posteriormente en un archivo de texto (.txt).
 //PARÁMETROS
-//  Puntero a la estructura CCC dinámica
+//  Puntero a la estructura Fecha dinámica
 //DEVUELVE: true si se pudo guardar, false de lo contrario (if archivo == NULL)
 bool guardarFecha(FechaPtr fecha);
-//OPERACIÓN: Guarda una DDD en un archivo dedicado
-//PRECONDICIÓN: La variable DDDPtr que se pase deberá haber sido creada previamente con crearDDD.
-//POSTCONDICIÓN: se copian los contenidos de la estructura DDDPtr en una estructura estática interna "fDDD",
+//OPERACIÓN: Guarda una Persona en un archivo dedicado
+//PRECONDICIÓN: La variable PersonaPtr que se pase deberá haber sido creada previamente con crearPersona.
+//POSTCONDICIÓN: se copian los contenidos de la estructura PersonaPtr en una estructura estática interna "fPersona",
 //               la cual se guarda posteriormente en un archivo de texto (.txt).
 //PARÁMETROS
-//  Puntero a la estructura DDD dinámica
+//  Puntero a la estructura Persona dinámica
 //DEVUELVE: true si se pudo guardar, false de lo contrario (if archivo == NULL)
 bool guardarPersona(PersonaPtr persona);
-//OPERACIÓN: Guarda una EEE en un archivo dedicado
-//PRECONDICIÓN: La variable EEEPtr que se pase deberá haber sido creada previamente con crearEEE.
-//POSTCONDICIÓN: se copian los contenidos de la estructura EEEPtr en una estructura estática interna "fEEE",
+//OPERACIÓN: Guarda una Paquete en un archivo dedicado
+//PRECONDICIÓN: La variable PaquetePtr que se pase deberá haber sido creada previamente con crearPaquete.
+//POSTCONDICIÓN: se copian los contenidos de la estructura PaquetePtr en una estructura estática interna "fPaquete",
 //               la cual se guarda posteriormente en un archivo de texto (.txt).
 //PARÁMETROS
-//  Puntero a la estructura EEE dinámica
+//  Puntero a la estructura Paquete dinámica
 //DEVUELVE: true si se pudo guardar, false de lo contrario (if archivo == NULL)
 bool guardarPaquete(PaquetePtr paquete);
-//OPERACIÓN: Guarda una FFF en un archivo dedicado
-//PRECONDICIÓN: La variable FFFPtr que se pase deberá haber sido creada previamente con crearFFF.
-//POSTCONDICIÓN: se copian los contenidos de la estructura FFFPtr en una estructura estática interna "fFFF",
+//OPERACIÓN: Guarda una Vehiculo en un archivo dedicado
+//PRECONDICIÓN: La variable VehiculoPtr que se pase deberá haber sido creada previamente con crearVehiculo.
+//POSTCONDICIÓN: se copian los contenidos de la estructura VehiculoPtr en una estructura estática interna "fVehiculo",
 //               la cual se guarda posteriormente en un archivo de texto (.txt).
 //PARÁMETROS
-//  Puntero a la estructura FFF dinámica
+//  Puntero a la estructura Vehiculo dinámica
 //DEVUELVE: true si se pudo guardar, false de lo contrario (if archivo == NULL)
 bool guardarVehiculo(VehiculoPtr vehiculo);
-//OPERACIÓN: Guarda una GGG en un archivo dedicado
-//PRECONDICIÓN: La variable GGGPtr que se pase deberá haber sido creada previamente con crearGGG.
-//POSTCONDICIÓN: se copian los contenidos de la estructura GGGPtr en una estructura estática interna "fGGG",
+//OPERACIÓN: Guarda una Reparto en un archivo dedicado
+//PRECONDICIÓN: La variable RepartoPtr que se pase deberá haber sido creada previamente con crearReparto.
+//POSTCONDICIÓN: se copian los contenidos de la estructura RepartoPtr en una estructura estática interna "fReparto",
 //               la cual se guarda posteriormente en un archivo de texto (.txt).
 //PARÁMETROS
-//  Puntero a la estructura GGG dinámica
+//  Puntero a la estructura Reparto dinámica
 //DEVUELVE: true si se pudo guardar, false de lo contrario (if archivo == NULL)
 bool guardarReparto(RepartoPtr reparto);
 
@@ -83,60 +83,60 @@ bool guardarReparto(RepartoPtr reparto);
 /// Para conjuntos de datos - Para guardar bases de datos de structs por defecto.
 //  Dedicadas a las funciones de creación de datos por defecto de test.h.
 
-//OPERACIÓN: Guarda un conjunto de AAAs
+//OPERACIÓN: Guarda un conjunto de Cuils
 //PRECONDICIÓN: La estructura debe haber sido creada con su respectiva constructora.
 //POSTCONDICIÓN: Copia dentro del archivo los datos pasados por medio de un doble puntero y la cantidad enviada
 //PARÁMETROS
-//  cuils: PUNTERO A PUNTERO A la estructura AAA (Doble puntero). Se puede pensar como un vector de AAAs
-//  cantidad: entero representando la cantidad de AAAs a guardar.
+//  cuils: PUNTERO A PUNTERO A la estructura Cuil (Doble puntero). Se puede pensar como un vector de Cuils
+//  cantidad: entero representando la cantidad de Cuils a guardar.
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarCuils(CuilPtr *cuils,int cantidad);
-//OPERACIÓN: Guarda un conjunto de BBBs
+//OPERACIÓN: Guarda un conjunto de Domicilios
 //PRECONDICIÓN: La estructura debe haber sido creada con su respectiva constructora.
 //POSTCONDICIÓN: Copia dentro del archivo los datos pasados por medio de un doble puntero y la cantidad enviada
 //PARÁMETROS
-//  cuils: PUNTERO A PUNTERO A la estructura BBB (Doble puntero). Se puede pensar como un vector de BBBs
-//  cantidad: entero representando la cantidad de BBBs a guardar.
+//  cuils: PUNTERO A PUNTERO A la estructura Domicilio (Doble puntero). Se puede pensar como un vector de Domicilios
+//  cantidad: entero representando la cantidad de Domicilios a guardar.
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarDomicilios(DomicilioPtr *domicilios,int cantidad);
-//OPERACIÓN: Guarda un conjunto de CCCs
+//OPERACIÓN: Guarda un conjunto de Fechas
 //PRECONDICIÓN: La estructura debe haber sido creada con su respectiva constructora.
 //POSTCONDICIÓN: Copia dentro del archivo los datos pasados por medio de un doble puntero y la cantidad enviada
 //PARÁMETROS
-//  cuils: PUNTERO A PUNTERO A la estructura CCC (Doble puntero). Se puede pensar como un vector de CCCs
-//  cantidad: entero representando la cantidad de CCCs a guardar.
+//  cuils: PUNTERO A PUNTERO A la estructura Fecha (Doble puntero). Se puede pensar como un vector de Fechas
+//  cantidad: entero representando la cantidad de Fechas a guardar.
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarFechas(FechaPtr *fechas,int cantidad);
-//OPERACIÓN: Guarda un conjunto de DDDs
+//OPERACIÓN: Guarda un conjunto de Personas
 //PRECONDICIÓN: La estructura debe haber sido creada con su respectiva constructora.
 //POSTCONDICIÓN: Copia dentro del archivo los datos pasados por medio de un doble puntero y la cantidad enviada
 //PARÁMETROS
-//  cuils: PUNTERO A PUNTERO A la estructura DDD (Doble puntero). Se puede pensar como un vector de DDDs
-//  cantidad: entero representando la cantidad de DDDs a guardar.
+//  cuils: PUNTERO A PUNTERO A la estructura Persona (Doble puntero). Se puede pensar como un vector de Personas
+//  cantidad: entero representando la cantidad de Personas a guardar.
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarPersonas(PersonaPtr *personas,int cantidad);
-//OPERACIÓN: Guarda un conjunto de EEEs
+//OPERACIÓN: Guarda un conjunto de Paquetes
 //PRECONDICIÓN: La estructura debe haber sido creada con su respectiva constructora.
 //POSTCONDICIÓN: Copia dentro del archivo los datos pasados por medio de un doble puntero y la cantidad enviada
 //PARÁMETROS
-//  cuils: PUNTERO A PUNTERO A la estructura EEE (Doble puntero). Se puede pensar como un vector de EEEs
-//  cantidad: entero representando la cantidad de EEEs a guardar.
+//  cuils: PUNTERO A PUNTERO A la estructura Paquete (Doble puntero). Se puede pensar como un vector de Paquetes
+//  cantidad: entero representando la cantidad de Paquetes a guardar.
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarPaquetes(PaquetePtr *paquetes,int cantidad);
-//OPERACIÓN: Guarda un conjunto de FFFs
+//OPERACIÓN: Guarda un conjunto de Vehiculos
 //PRECONDICIÓN: La estructura debe haber sido creada con su respectiva constructora.
 //POSTCONDICIÓN: Copia dentro del archivo los datos pasados por medio de un doble puntero y la cantidad enviada
 //PARÁMETROS
-//  cuils: PUNTERO A PUNTERO A la estructura FFF (Doble puntero). Se puede pensar como un vector de FFFs
-//  cantidad: entero representando la cantidad de FFFs a guardar.
+//  cuils: PUNTERO A PUNTERO A la estructura Vehiculo (Doble puntero). Se puede pensar como un vector de Vehiculos
+//  cantidad: entero representando la cantidad de Vehiculos a guardar.
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarVehiculos(VehiculoPtr *vehiculos,int cantidad);
-//OPERACIÓN: Guarda un conjunto de GGGs
+//OPERACIÓN: Guarda un conjunto de Repartos
 //PRECONDICIÓN: La estructura debe haber sido creada con su respectiva constructora.
 //POSTCONDICIÓN: Copia dentro del archivo los datos pasados por medio de un doble puntero y la cantidad enviada
 //PARÁMETROS
-//  cuils: PUNTERO A PUNTERO A la estructura GGG (Doble puntero). Se puede pensar como un vector de GGGs
-//  cantidad: entero representando la cantidad de GGGs a guardar.
+//  cuils: PUNTERO A PUNTERO A la estructura Reparto (Doble puntero). Se puede pensar como un vector de Repartos
+//  cantidad: entero representando la cantidad de Repartos a guardar.
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarRepartos(RepartoPtr *repartos,int cantidad);
 
@@ -146,38 +146,44 @@ bool guardarRepartos(RepartoPtr *repartos,int cantidad);
 /// Para listas de datos - Centro Logístico
 
 
-//OPERACIÓN: guarda una lista de DDDs en un archivo de texto
+//OPERACIÓN: guarda una lista de Personas en un archivo de texto
 //PRECONDICIÓN: centroLogistico debe haber sido creado con la función crearCentroLogistico y cargado con una
-//              lista de DDDs
-//POSTCONDICIÓN: Extrae la lista de DDDs y las registra una por una dentro de un archivo de texto
+//              lista de Personas
+//POSTCONDICIÓN: Extrae la lista de Personas y las registra una por una dentro de un archivo de texto
 //PARÁMETROS
-//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de DDDs para guardar
+//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de Personas para guardar
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarListaPersonas(CentroLogisticoPtr centroLogistico);
-//OPERACIÓN: guarda una lista de EEEs en un archivo de texto
+//OPERACIÓN: guarda una lista de Paquetes en un archivo de texto
 //PRECONDICIÓN: centroLogistico debe haber sido creado con la función crearCentroLogistico y cargado con una
-//              lista de EEEs
-//POSTCONDICIÓN: Extrae la lista de EEEs y los registra uno por uno dentro de un archivo de texto
+//              lista de Paquetes
+//POSTCONDICIÓN: Extrae la lista de Paquetes y los registra uno por uno dentro de un archivo de texto
 //PARÁMETROS
-//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de EEEs para guardar
+//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de Paquetes para guardar
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarListaPaquetes(CentroLogisticoPtr centroLogistico);
-//OPERACIÓN: guarda una lista de FFFs en un archivo de texto
+//OPERACIÓN: guarda una lista de Vehiculos en un archivo de texto
 //PRECONDICIÓN: centroLogistico debe haber sido creado con la función crearCentroLogistico y cargado con una
-//              lista de FFFs
-//POSTCONDICIÓN: Extrae la lista de FFFs y los registra uno por uno dentro de un archivo de texto
+//              lista de Vehiculos
+//POSTCONDICIÓN: Extrae la lista de Vehiculos y los registra uno por uno dentro de un archivo de texto
 //PARÁMETROS
-//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de FFFs para guardar
+//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de Vehiculos para guardar
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
 bool guardarListaVehiculos(CentroLogisticoPtr centroLogistico);
-//OPERACIÓN: guarda una lista de GGGs en un archivo de texto
+//OPERACIÓN: guarda una lista de Repartos Abiertos en un archivo de texto
 //PRECONDICIÓN: centroLogistico debe haber sido creado con la función crearCentroLogistico y cargado con una
-//              lista de GGGs
-//POSTCONDICIÓN: Extrae la lista de GGGs y los registra uno por uno dentro de un archivo de texto
+//              lista de Repartos
+//POSTCONDICIÓN: guarda en el archivo correspondiente según la variable esRepartoAbierto
+//          si es true (esRepartoAbierto) se guardará en un archivo "Lista de Repartos Abiertos.txt"
+//          en caso contrario (!esRepartoAbiero) se guardará en un archivo "Lista de Repartos Cerrados.txt"
+
 //PARÁMETROS
-//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de GGGs para guardar
+//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de Repartos para guardar
+//  esRepartoAbierto: valor booleano:
+//      true = si se quiere guardar un reparto abierto,
+//      false = si se quiere guardar un reparto cerrado.
 //DEVUELVE: verdadero si se guardó correctamente, falso si ocurrió un error
-bool guardarListaRepartos(CentroLogisticoPtr centroLogistico);
+bool guardarListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
 
 
 ///---------------------------------------------------------------------------------------------------------------
@@ -209,74 +215,74 @@ bool guardarTodo(CentroLogisticoPtr centroLogistico); //implementacion: llamará 
 //  Se pueden pensar como un portapapeles.
 
 
-//OPERACIÓN: recupera los datos de una estructura AAA desde un archivo de texto
-//PRECONDICIÓN: La variable AAA recibida debe haber sido definida previamente,
+//OPERACIÓN: recupera los datos de una estructura Cuil desde un archivo de texto
+//PRECONDICIÓN: La variable Cuil recibida debe haber sido definida previamente,
 //              y su contenido vaciado con su función destructora.
-/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE AAA PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "AAA.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: se llena la estructura AAA con los contenidos del archivo de texto
+/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE Cuil PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Cuil.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: se llena la estructura Cuil con los contenidos del archivo de texto
 //PARÁMETROS
-//  AAA: puntero a la estructura AAA en la que se quiere cargar datos
+//  Cuil: puntero a la estructura Cuil en la que se quiere cargar datos
 //DEVUELVE: true si se pudo abrir, false de lo contrario (if archivo == NULL)
 bool abrirCuil(CuilPtr cuil);
-//OPERACIÓN: recupera los datos de una estructura BBB desde un archivo de texto
-//PRECONDICIÓN: La variable BBB recibida debe haber sido definida previamente,
+//OPERACIÓN: recupera los datos de una estructura Domicilio desde un archivo de texto
+//PRECONDICIÓN: La variable Domicilio recibida debe haber sido definida previamente,
 //              y su contenido vaciado con su función destructora.
-/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE BBB PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "BBB.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: se llena la estructura BBB con los contenidos del archivo de texto
+/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE Domicilio PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Domicilio.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: se llena la estructura Domicilio con los contenidos del archivo de texto
 //PARÁMETROS
-//  BBB: puntero a la estructura BBB en la que se quiere cargar datos
+//  Domicilio: puntero a la estructura Domicilio en la que se quiere cargar datos
 //DEVUELVE: true si se pudo abrir, false de lo contrario (if archivo == NULL)
 bool abrirDomicilio(DomicilioPtr domicilio);
-//OPERACIÓN: recupera los datos de una estructura CCC desde un archivo de texto
-//PRECONDICIÓN: La variable CCC recibida debe haber sido definida previamente,
+//OPERACIÓN: recupera los datos de una estructura Fecha desde un archivo de texto
+//PRECONDICIÓN: La variable Fecha recibida debe haber sido definida previamente,
 //              y su contenido vaciado con su función destructora.
-/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE CCC PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "CCC.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: se llena la estructura CCC con los contenidos del archivo de texto
+/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE Fecha PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Fecha.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: se llena la estructura Fecha con los contenidos del archivo de texto
 //PARÁMETROS
-//  CCC: puntero a la estructura CCC en la que se quiere cargar datos
+//  Fecha: puntero a la estructura Fecha en la que se quiere cargar datos
 //DEVUELVE: true si se pudo abrir, false de lo contrario (if archivo == NULL)
 bool abrirFecha(FechaPtr fecha);
-//OPERACIÓN: recupera los datos de una estructura DDD desde un archivo de texto
-//PRECONDICIÓN: La variable DDD recibida debe haber sido definida previamente,
+//OPERACIÓN: recupera los datos de una estructura Persona desde un archivo de texto
+//PRECONDICIÓN: La variable Persona recibida debe haber sido definida previamente,
 //              y su contenido vaciado con su función destructora.
-/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE DDD PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "DDD.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: se llena la estructura DDD con los contenidos del archivo de texto
+/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE Persona PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Persona.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: se llena la estructura Persona con los contenidos del archivo de texto
 //PARÁMETROS
-//  DDD: puntero a la estructura DDD en la que se quiere cargar datos
+//  Persona: puntero a la estructura Persona en la que se quiere cargar datos
 //DEVUELVE: true si se pudo abrir, false de lo contrario (if archivo == NULL)
 bool abrirPersona(PersonaPtr persona);
-//OPERACIÓN: recupera los datos de una estructura EEE desde un archivo de texto
-//PRECONDICIÓN: La variable EEE recibida debe haber sido definida previamente,
+//OPERACIÓN: recupera los datos de una estructura Paquete desde un archivo de texto
+//PRECONDICIÓN: La variable Paquete recibida debe haber sido definida previamente,
 //              y su contenido vaciado con su función destructora.
-/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE EEE PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "EEE.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: se llena la estructura EEE con los contenidos del archivo de texto
+/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE Paquete PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Paquete.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: se llena la estructura Paquete con los contenidos del archivo de texto
 //PARÁMETROS
-//  EEE: puntero a la estructura EEE en la que se quiere cargar datos
+//  Paquete: puntero a la estructura Paquete en la que se quiere cargar datos
 //DEVUELVE: true si se pudo abrir, false de lo contrario (if archivo == NULL)
 bool abrirPaquete(PaquetePtr paquete);
-//OPERACIÓN: recupera los datos de una estructura FFF desde un archivo de texto
-//PRECONDICIÓN: La variable FFF recibida debe haber sido definida previamente,
+//OPERACIÓN: recupera los datos de una estructura Vehiculo desde un archivo de texto
+//PRECONDICIÓN: La variable Vehiculo recibida debe haber sido definida previamente,
 //              y su contenido vaciado con su función destructora.
-/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE FFF PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "FFF.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: se llena la estructura FFF con los contenidos del archivo de texto
+/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE Vehiculo PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Vehiculo.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: se llena la estructura Vehiculo con los contenidos del archivo de texto
 //PARÁMETROS
-//  FFF: puntero a la estructura FFF en la que se quiere cargar datos
+//  Vehiculo: puntero a la estructura Vehiculo en la que se quiere cargar datos
 //DEVUELVE: true si se pudo abrir, false de lo contrario (if archivo == NULL)
 bool abrirVehiculo(VehiculoPtr vehiculo);
-//OPERACIÓN: recupera los datos de una estructura GGG desde un archivo de texto
-//PRECONDICIÓN: La variable GGG recibida debe haber sido definida previamente,
+//OPERACIÓN: recupera los datos de una estructura Reparto desde un archivo de texto
+//PRECONDICIÓN: La variable Reparto recibida debe haber sido definida previamente,
 //              y su contenido vaciado con su función destructora.
-/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE GGG PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "GGG.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: se llena la estructura GGG con los contenidos del archivo de texto
+/// - ADEMÁS, DEBE HABERSE GUARDADO UN CONJUNTO DE Reparto PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Reparto.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: se llena la estructura Reparto con los contenidos del archivo de texto
 //PARÁMETROS
-//  GGG: puntero a la estructura GGG en la que se quiere cargar datos
+//  Reparto: puntero a la estructura Reparto en la que se quiere cargar datos
 //DEVUELVE: true si se pudo abrir, false de lo contrario (if archivo == NULL)
 bool abrirReparto(RepartoPtr reparto);
 
@@ -286,81 +292,81 @@ bool abrirReparto(RepartoPtr reparto);
 /// Para conjuntos de datos - Para abrir bases de datos de structs por defecto.
 //  Dedicadas a las funciones de creación de datos por defecto de test.h.
 
-//OPERACIÓN: Recupera los datos de un conjunto de AAAs de un archivo de texto
+//OPERACIÓN: Recupera los datos de un conjunto de Cuils de un archivo de texto
 //PRECONDICIÓN:
 //  - La estructura debe haber sido definida previamente,
 //      y su contenido vaciado con su respectiva función destructora.
-/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE AAAS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "AAAs por Defecto.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Copia dentro del conjunto de AAAs los datos almacenados en un archivo de texto.
+/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE CuilS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Cuils por Defecto.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Copia dentro del conjunto de Cuils los datos almacenados en un archivo de texto.
 //PARÁMETROS
-//  cuils: PUNTERO A PUNTERO A la estructura AAA (Doble puntero). Se puede pensar como un vector de AAAs
+//  cuils: PUNTERO A PUNTERO A la estructura Cuil (Doble puntero). Se puede pensar como un vector de Cuils
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirCuils(CuilPtr *cuils);
-//OPERACIÓN: Recupera los datos de un conjunto de BBBs de un archivo de texto
+//OPERACIÓN: Recupera los datos de un conjunto de Domicilios de un archivo de texto
 //PRECONDICIÓN:
 //  - La estructura debe haber sido definida previamente,
 //      y su contenido vaciado con su respectiva función destructora.
-/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE BBBS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "BBBs por Defecto.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Copia dentro del conjunto de BBBs los datos almacenados en un archivo de texto.
+/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE DomicilioS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Domicilios por Defecto.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Copia dentro del conjunto de Domicilios los datos almacenados en un archivo de texto.
 //PARÁMETROS
-//  BBBs: PUNTERO A PUNTERO A la estructura BBB (Doble puntero). Se puede pensar como un vector de BBBs
+//  Domicilios: PUNTERO A PUNTERO A la estructura Domicilio (Doble puntero). Se puede pensar como un vector de Domicilios
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirDomicilios(DomicilioPtr *domicilios);
-//OPERACIÓN: Recupera los datos de un conjunto de CCCs de un archivo de texto
+//OPERACIÓN: Recupera los datos de un conjunto de Fechas de un archivo de texto
 //PRECONDICIÓN:
 //  - La estructura debe haber sido definida previamente,
 //      y su contenido vaciado con su respectiva función destructora.
-/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE CCCS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "CCCs por Defecto.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Copia dentro del conjunto de CCCs los datos almacenados en un archivo de texto.
+/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE FechaS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Fechas por Defecto.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Copia dentro del conjunto de Fechas los datos almacenados en un archivo de texto.
 //PARÁMETROS
-//  CCCs: PUNTERO A PUNTERO A la estructura CCC (Doble puntero). Se puede pensar como un vector de CCCs
+//  Fechas: PUNTERO A PUNTERO A la estructura Fecha (Doble puntero). Se puede pensar como un vector de Fechas
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirFechas(FechaPtr *fechas);
-//OPERACIÓN: Recupera los datos de un conjunto de DDDs de un archivo de texto
+//OPERACIÓN: Recupera los datos de un conjunto de Personas de un archivo de texto
 //PRECONDICIÓN:
 //  - La estructura debe haber sido definida previamente,
 //      y su contenido vaciado con su respectiva función destructora.
-/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE DDDS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "DDDs por Defecto.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Copia dentro del conjunto de DDDs los datos almacenados en un archivo de texto.
+/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE PersonaS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Personas por Defecto.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Copia dentro del conjunto de Personas los datos almacenados en un archivo de texto.
 //PARÁMETROS
-//  DDDs: PUNTERO A PUNTERO A la estructura DDD (Doble puntero). Se puede pensar como un vector de DDDs
+//  Personas: PUNTERO A PUNTERO A la estructura Persona (Doble puntero). Se puede pensar como un vector de Personas
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirPersonas(PersonaPtr *personas);
-//OPERACIÓN: Recupera los datos de un conjunto de EEEs de un archivo de texto
+//OPERACIÓN: Recupera los datos de un conjunto de Paquetes de un archivo de texto
 //PRECONDICIÓN:
 //  - La estructura debe haber sido definida previamente,
 //      y su contenido vaciado con su respectiva función destructora.
-/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE AAAS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "EEEs por Defecto.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Copia dentro del conjunto de EEEs los datos almacenados en un archivo de texto.
+/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE CuilS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Paquetes por Defecto.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Copia dentro del conjunto de Paquetes los datos almacenados en un archivo de texto.
 //PARÁMETROS
-//  EEEs: PUNTERO A PUNTERO A la estructura EEE (Doble puntero). Se puede pensar como un vector de EEEs
+//  Paquetes: PUNTERO A PUNTERO A la estructura Paquete (Doble puntero). Se puede pensar como un vector de Paquetes
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirPaquetes(PaquetePtr *paquetes);
-//OPERACIÓN: Recupera los datos de un conjunto de FFFs de un archivo de texto
+//OPERACIÓN: Recupera los datos de un conjunto de Vehiculos de un archivo de texto
 //PRECONDICIÓN:
 //  - La estructura debe haber sido definida previamente,
 //      y su contenido vaciado con su respectiva función destructora.
-/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE FFFS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "FFFs por Defecto.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Copia dentro del conjunto de FFFs los datos almacenados en un archivo de texto.
+/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE VehiculoS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Vehiculos por Defecto.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Copia dentro del conjunto de Vehiculos los datos almacenados en un archivo de texto.
 //PARÁMETROS
-//  FFFs: PUNTERO A PUNTERO A la estructura FFF (Doble puntero). Se puede pensar como un vector de FFFs
+//  Vehiculos: PUNTERO A PUNTERO A la estructura Vehiculo (Doble puntero). Se puede pensar como un vector de Vehiculos
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirVehiculos(VehiculoPtr *vehiculos);
-//OPERACIÓN: Recupera los datos de un conjunto de GGGs de un archivo de texto
+//OPERACIÓN: Recupera los datos de un conjunto de Repartos de un archivo de texto
 //PRECONDICIÓN:
 //  - La estructura debe haber sido definida previamente,
 //      y su contenido vaciado con su respectiva función destructora.
-/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE GGGS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "GGG por Defecto.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Copia dentro del conjunto de GGGs los datos almacenados en un archivo de texto.
+/// - ADEMÁS, DEBEN HABERSE GUARDADO UN CONJUNTO DE RepartoS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Reparto por Defecto.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Copia dentro del conjunto de Repartos los datos almacenados en un archivo de texto.
 //PARÁMETROS
-//  GGGs: PUNTERO A PUNTERO A la estructura GGG (Doble puntero). Se puede pensar como un vector de GGGs
+//  Repartos: PUNTERO A PUNTERO A la estructura Reparto (Doble puntero). Se puede pensar como un vector de Repartos
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirRepartos(RepartoPtr *repartos);
 
@@ -370,46 +376,49 @@ bool abrirRepartos(RepartoPtr *repartos);
 /// Para listas de datos - Centro Logístico
 
 
-//OPERACIÓN: Recupera una lista de DDDs de un archivo de texto
+//OPERACIÓN: Recupera una lista de Personas de un archivo de texto
 //PRECONDICIÓN: centroLogistico debe haber sido creado con la función crearCentroLogistico,
-//              y su lista de DDDs debe estar vacía
-/// - ADEMÁS, DEBE HABERSE GUARDADO UNA LISTA DE DDDS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "Lista de DDDs.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Abre el archivo y copia los datos en la lista de DDDs del centro logístico recibido
+//              y su lista de Personas debe estar vacía
+/// - ADEMÁS, DEBE HABERSE GUARDADO UNA LISTA DE PersonaS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Lista de Personas.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Abre el archivo y copia los datos en la lista de Personas del centro logístico recibido
 //PARÁMETROS
-//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de DDDs para guardar
+//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de Personas para guardar
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirListaPersonas(CentroLogisticoPtr centroLogistico);
-//OPERACIÓN: Recupera una lista de EEE de un archivo de texto
+//OPERACIÓN: Recupera una lista de Paquete de un archivo de texto
 //PRECONDICIÓN: centroLogistico debe haber sido creado con la función crearCentroLogistico,
-//              y su lista de EEEs debe estar vacía
-/// - ADEMÁS, DEBE HABERSE GUARDADO UNA LISTA DE EEES PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "Lista de EEEs.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Abre el archivo y copia los datos en la lista de EEEs del centro logístico recibido
+//              y su lista de Paquetes debe estar vacía
+/// - ADEMÁS, DEBE HABERSE GUARDADO UNA LISTA DE PaqueteS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Lista de Paquetes.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Abre el archivo y copia los datos en la lista de Paquetes del centro logístico recibido
 //PARÁMETROS
-//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de EEEs para guardar
+//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de Paquetes para guardar
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirListaPaquetes(CentroLogisticoPtr centroLogistico);
-//OPERACIÓN: Recupera una lista de FFFs de un archivo de texto
+//OPERACIÓN: Recupera una lista de Vehiculos de un archivo de texto
 //PRECONDICIÓN: centroLogistico debe haber sido creado con la función crearCentroLogistico,
-//              y su lista de FFFs debe estar vacía
-/// - ADEMÁS, DEBE HABERSE GUARDADO UNA LISTA DE FFFS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "Lista de FFFs.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Abre el archivo y copia los datos en la lista de FFFs del centro logístico recibido
+//              y su lista de Vehiculos debe estar vacía
+/// - ADEMÁS, DEBE HABERSE GUARDADO UNA LISTA DE VehiculoS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Lista de Vehiculos.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Abre el archivo y copia los datos en la lista de Vehiculos del centro logístico recibido
 //PARÁMETROS
-//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de FFFs para guardar
+//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de Vehiculos para guardar
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
 bool abrirListaVehiculos(CentroLogisticoPtr centroLogistico);
-//OPERACIÓN: Recupera una lista de GGGs de un archivo de texto
+//OPERACIÓN: Recupera una lista de Repartos de un archivo de texto
 //PRECONDICIÓN: centroLogistico debe haber sido creado con la función crearCentroLogistico,
-//              y su lista de GGGs debe estar vacía
-/// - ADEMÁS, DEBE HABERSE GUARDADO UNA LISTA DE DDDS PREVIAMENTE.
-///     VERIFICAR QUE EXISTA UN ARCHIVO "Lista de GGGs.txt" Y QUE TENGA CONTENIDO.
-//POSTCONDICIÓN: Abre el archivo y copia los datos en la lista de GGGs del centro logístico recibido
+//              y su lista de Repartos debe estar vacía
+/// - ADEMÁS, DEBE HABERSE GUARDADO UNA LISTA DE PersonaS PREVIAMENTE.
+///     VERIFICAR QUE EXISTA UN ARCHIVO "Lista de Repartos.txt" Y QUE TENGA CONTENIDO.
+//POSTCONDICIÓN: Abre el archivo y copia los datos en la lista de Repartos correspondiente del centro logístico recibido
 //PARÁMETROS
-//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de GGGs para guardar
+//  centroLogistico: puntero a la estructura CentroLogistico del que extraer la lista de Repartos para abrir
+//  esRepartoAbierto: valor booleano:
+//      true = si se quiere abrir un reparto abierto,
+//      false = si se quiere abrir un reparto cerrado.
 //DEVUELVE: verdadero si se abrió correctamente, falso si ocurrió un error
-bool abrirListaRepartos(CentroLogisticoPtr centroLogistico);
+bool abrirListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
 
 
 ///---------------------------------------------------------------------------------------------------------------
