@@ -37,16 +37,15 @@ int main()
         limpiarBufferTeclado();
         system("cls");
 
-        if(MAIN_OP==1)
-        {
-            centroLogistico=menuCrearNuevoCtroLogRapido(centroLogistico);
-            MAIN_MENU(centroLogistico,MAIN_OP);
-            centroLogistico=destruirCentroLogistico(centroLogistico);
-        }
 
 
         switch(MAIN_OP)
         {
+        case 1:
+            centroLogistico=menuCrearNuevoCtroLogRapido(centroLogistico);
+            MAIN_MENU(centroLogistico,MAIN_OP);
+            centroLogistico=destruirCentroLogistico(centroLogistico);
+            break;
         case 2:
             centroLogistico = abrirTodo();
             if(centroLogistico==NULL)
@@ -409,6 +408,7 @@ void MAIN_MENU(CentroLogisticoPtr centroLogistico,int MAIN_OP)
                     guardarTodo(centroLogistico);
                     break;
                 case 2:
+                    presionarEnterYLimpiarPantalla();
                     break;
                 case 0:
                     MAIN_OP=1; //Cambiamos el valor para evitar que salga el programa. No pasa nada, luego se espera a que el usuario ingrese una opcion.
