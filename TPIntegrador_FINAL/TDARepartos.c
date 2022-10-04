@@ -120,18 +120,16 @@ void mostrarReparto(RepartoPtr reparto)
     traerFechaYHora(getFechaRetorno(reparto),strFecha);
     printf("Fecha de Retorno: %s\n",strFecha);
 
-    PilaPtr pilaAux=crearPila();
+    int cantPaq=longitudPila(getPaquetesReparto(reparto));
     PaquetePtr paqueteAux;
-    while(!pilaVacia(getPaquetesReparto(reparto)))
+    PaquetePtr paquetes[cantPaq];
+
+    for(int i=0;i<cantPaq;i++)
     {
-        paqueteAux=(PaquetePtr)desapilar(getPaquetesReparto(reparto));
-        mostrarPaquete(paqueteAux);
-        apilar(getPaquetesReparto(reparto),(PaquetePtr)paqueteAux);
+        printf("%d. ",i+1);
+        paquetes[i]=(PaquetePtr)desapilar(getPaquetesReparto(reparto));
+        mostrarPaquete(paquetes[i]);
     }
-    while(!pilaVacia(pilaAux))
-    {
-        paqueteAux=(PaquetePtr)desapilar(pilaAux);
-        apilar(getPaquetesReparto(reparto),(PaquetePtr)paqueteAux);
-    }
-    pilaAux=destruirPila(pilaAux);
+    for(int i=0;i<cantPaq;i++)
+        apilar(getPaquetesReparto(reparto),(PaquetePtr)paquetes[cantPaq-i]);
 }

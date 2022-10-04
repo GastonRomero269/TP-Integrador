@@ -1,6 +1,6 @@
 NOVEDADES
 
-	V1.9 (Franco)
+	V1.9 (Franco) - v1.9.1-alpha
 		- Arreglo de Errores y cambio a funciones de menus:
 			- Se arreglaron varios errores menores con el debugger y se cambiaron los menues de actualizacion de datos con las nuevas funciones y cambios al TDA Cuil.
 
@@ -8,51 +8,35 @@ NOVEDADES
 
 			- También se agregó un nuevo menú de creacion de centro logistico de forma rápida, utilizada en el START MENU de main.c
 
+		CORRECCIONES DEL 3/10 - ARREGLADAS - v1.9.2-alpha
+			- TDA Fecha - Funcion validarFecha: se cambio el switch largo para validar el dia, por un vector con una dimension igual a la cantidad de meses del año, cuyas posiciones contienen el valor máximo particular de dias de cada mes. Esto redujo mucho código a solo algunas líneas.
+			- Funcion anterior y Menus.c - Funciones abrir/guardar todo: se comprimio el conjugado de booleanos en una sola variable, a la que se progresivamente se le van agregando condiciones. Nos ahorramos variables.
+			- Se eliminaron las funciones "sugerirCuilValido" y "convertirACuilValido" ya que realmente no podían cumplir su propósito:
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+			*****
+				Profe: "Esas funciones están bien, pero no conviene que las 					usen..."
+				Franco: "¿Por qué? Si el usuario ingresa mal el cuil, la funcion 					automaticamente calcula para que sea valido."
+				Profe: "Pero si el usuario ingresa mal el dni, el calculo tambien va a 				fallar. ¿Como haces ahí?"
+				Franco: "Ah, es verdad."
 
-	Versiones anteriores (1.7, 1.8 y 1.8 (Gastón))
+				CONCLUSION: SE DESCARTAN LAS FUNCIONES. "Hagan que si el 				usuario ingresa un cuil invalido, le salga un mensaje de error y 					listo, que el usuario se fije. Sino, es muy dificil."
+			*****
 
-- Agregados archivos "Files.c","Files.h".
-  Contienen funciones de lectura(***) y escritura de archivos y
-  variantes especiales de las estructuras utilizadas en dichas funciones.
-	
+			- Agregamos la implementacion de la funcion "menuArmarReparto". Muestra una lista de cada campo y se selecciona por indice.
 
-- Funciones de menues y submenues ahora se encuentran en archivos separados: "Menus.c" y "Menus.h".
-
-- Main.c:
-	- Se creo un "Start Menu", que crea un centro logistico vacio con un nuevo nombre si el usuario es nuevo, o carga datos en uno de lo contrario.
-		(***) PRECAUCION: la funcion "abrirTodo" crea un centro logistico y devuelve un puntero al mismo, por lo que crearlo externamente y luego invocar a la funcion provocara un memory leak.
-	- Se movio el Menu Principal a una funcion separada (en el mismo archivo main.c).
-	- Agregadas llamadas a funciones en varios menues y submenues.
-
-- TDA CUIL:
-	- Se cambio la estructura interna del TDA. Ahora el cuil se guarda en un string.
-	- Se cambiaron los getters y setters para tipo, dni y numero verificador, asi como las funciones de creacion y destruccion.
-	- Se agregaron un setter y un getter para la nueva implementacion.
-	- Se eliminaron las funciones traerCuil y traerCuilDinamico.
-	- Se cambio la funcion mostrarCuil.
-	- Se refino la apariencia de la interfaz en CUIL.h.
-
-- TDA Personas:
-	- Con los cambios al TDA CUIL, getCuil y setCuil debieron renombrarse a getCuilPersona y setCuilPersona, para prevenir confusiones o bugs.
-	- Se cambio la funcion mostrarPersona.
-	- Se agrego la funcion crearPersonaDirect, la cual construye en base a puramente datos primitivos (strings, ints y bool).
-	- Se corrigio la funion crearPersona: se creaba un cuil y un domicilio llamando a sus respectivas constructoras, lo cual no era necesario y generaba trabajo extra en la ejecucion del programa (no percibido, pero existente). Ahora se asignan directamente a la estructura persona.
 
 ---------------------------------------------------------------------------------------------------------------------
 
 BUG FIXES
 
-- Se arregló el error de las funciones de mostrar listas, que hacían que el programa crasheara luego
-  de mostrar los datos.
+- Menus.c - GLOBAL: Se reemplazaron los strings de punteros a char a arrays de char, ya que esto generaba errores en el ingreso de datos y generaba una terminacion abrupta del programa.
 
 ---------------------------------------------------------------------------------------------------------------------
 
 
 BUGS
 
-- En START MENU, opcion 1 - Soy nuevo (empezar de cero), el programa crashea luego de pedir el nombre para el nuevo centro logistico.
+- ***ARREGLADO - VER SECCION BUG FIXES*** En START MENU, opcion 1 - Soy nuevo (empezar de cero), el programa crashea luego de pedir el nombre para el nuevo centro logistico.
 
 ---------------------------------------------------------------------------------------------------------------------
 
@@ -85,7 +69,7 @@ Creamos el paquete con el campo "motivo de entrega" vacío. Luego, tendríamos q
 
 - Menus: agregar un submenu donde puedas elegir si queres tomar accion sobre un solo dato o un grupo de datos a la vez, para evitar tener que entrar al menu varias veces (sería tedioso). Dentro de la segunda opcion (habria una 3ra, volver), podemos elegir si queremos tomar accion de un rango de indices, o bien si queremos tomar accion sobre varios indices especificos.
 
-- Agregar getters y setters adicionales para las subestructuras de cada estructura (domicilio, cuil o fecha, por ejemplo, agregar getters y setters a sus campos específicos) (opcional).
+- Agregar getters y setters adicionales para las subestructuras de cada estructura (domicilio, cuil o fecha). Por ejemplo, agregar getters y setters a sus campos específicos) (opcional).
 
 - Agregar funciones de ordenamiento.
 	FALTAN: 
@@ -93,3 +77,9 @@ Creamos el paquete con el campo "motivo de entrega" vacío. Luego, tendríamos q
 		Ordenar Vehiculos alfabeticamente por marca
 
 - ARREGLAR POSIBLES BUGS :(
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+CORRECCIONES
+

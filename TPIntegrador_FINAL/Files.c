@@ -757,7 +757,7 @@ bool guardarListaVehiculos(CentroLogisticoPtr centroLogistico)
         return true;
     }
 }
-bool guardarListaRepartos(CentroLogisticoPtr centroLogistico)
+bool guardarListaRepartos(CentroLogisticoPtr centroLogistico/*,bool esRepartoAbierto*/)
 {
     FILE *archivo = fopen("Lista de Repartos.txt","w");
 
@@ -792,9 +792,9 @@ bool guardarListaRepartos(CentroLogisticoPtr centroLogistico)
 bool guardarTodo(CentroLogisticoPtr centroLogistico) //implementacion: llamará a las otras funciones de guardado
 {
     FILE *archivo = fopen("Nombre del Centro Logistico.txt","w");
-    bool flag = true; //a diferencia de las funciones anteriores, usamos una bandera para juntar al conjugado.
+    bool res = true; //a diferencia de las funciones anteriores, usamos una bandera para juntar al conjugado.
     if(archivo==NULL)
-        flag=false;
+        res=false;
     else
     {
         char *temp = getNombreCentroLogistico(centroLogistico);
@@ -807,19 +807,16 @@ bool guardarTodo(CentroLogisticoPtr centroLogistico) //implementacion: llamará a
         fwrite(nombreCtroLog,sizeof(char),longStr,archivo);
         fclose(archivo);
     }
-    bool res1 = guardarListaPaquetes(centroLogistico);
-    bool res2 = guardarListaPersonas(centroLogistico);
-    bool res3 = guardarListaVehiculos(centroLogistico);
-    bool res4 = guardarListaRepartos(centroLogistico);
-///Retornamos un conjugado ANDs con los 4 resultados individuales.
+    res = res && guardarListaPaquetes(centroLogistico);
+    //res1=res1 && guardarListaPersonas(centroLogistico); ///dasdlsj an
+    res = res && guardarListaPersonas(centroLogistico);
+    res = res && guardarListaVehiculos(centroLogistico);
+    res = res && guardarListaRepartos(centroLogistico);
+///Un booleano almacenará el valor de verdad de los resultados de todas las funciones.
 ///De esta manera, si alguno falla, el conjugado será falso, lo retornará, y nos daremos cuenta.
-    return res1 && res2 && res3 && res4 && flag;
+    return res;
 }
-///Lectura - Se reutilizan las estructuras creadas en main.c
-///Precondición: La variable estructura / lista que se pase deberá haber sido creada previamente,
-///              y debe haberse vaciado con su funcion destructora.
-///Postcondición: se llena la estructura / lista con los contenidos del archivo
-///Devuelve true si se pudo abrir, false de lo contrario (if archivo != NULL)
+
 //  datos / estructuras individuales
 bool abrirCuil(CuilPtr cuil)
 {
@@ -1198,27 +1195,27 @@ CentroLogisticoPtr abrirTodo() //implementacion: creará un centro logistico y lo
 {
     //Primero, recuperamos el nombre del centro logistico.
     FILE *archivo = fopen("Nombre del Centro Logistico.txt","r");
-    bool flag=true;
+    bool res=true;
 
     char *nombreCtroLog;
 
     if(archivo==NULL)
-        flag=false;
+        res=false;
     else
     {
         if(LeerString(archivo,nombreCtroLog,100,'\n')==EOF)
-            flag=false; ///volvemos a poner false si el archivo abre, pero está vacío por alguna razón.
+            res=false; ///volvemos a poner false si el archivo abre, pero está vacío por alguna razón.
     }
 
     CentroLogisticoPtr centroLogistico = crearCentroLogisticoRapido(nombreCtroLog);
 
-    bool res1 = abrirListaPaquetes(centroLogistico);
-    bool res2 = abrirListaPersonas(centroLogistico);
-    bool res3 = abrirListaVehiculos(centroLogistico);
-    bool res4 = abrirListaRepartos(centroLogistico);
-///Retornamos un conjugado ANDs con los 4 resultados individuales.
-///De esta manera, si alguno falla, el conjugado será falso, lo retornará, y nos daremos cuenta.
-    if((res1 && res2 && res3 && res4 && flag) == true)
+    res = res && abrirListaPaquetes(centroLogistico);
+    res = res && abrirListaPersonas(centroLogistico);
+    res = res && abrirListaVehiculos(centroLogistico);
+    res = res && abrirListaRepartos(centroLogistico);
+///Un booleano almacenará el valor de verdad de los resultados de todas las funciones.
+///De esta manera, si alguna funcion falla, la booleana será falso, y nos daremos cuenta.
+    if(res)
         return centroLogistico;
     else
         return NULL; //retornamos null si hubo algún error.

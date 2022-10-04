@@ -28,8 +28,6 @@ CentroLogisticoPtr crearCentroLogisticoRapido(char *nombre) ///Crea un centro lo
     CentroLogisticoPtr centroLogistico=(CentroLogisticoPtr)obtenerMemoria(sizeof(CentroLogistico));
 
     centroLogistico->nombre=crearStringDinamico(nombre);
-///nota: destruir el string original luego de hacer esto y ver si funca
-///Si eso funca, agergar un parámetro bool más que indique si el string recibido es dinamico o estático, así no destruimos el string aunque sea estatico.
 
     centroLogistico->listaPaquetes=crearLista();
     centroLogistico->listaPersonas=crearLista();

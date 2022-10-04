@@ -261,66 +261,32 @@ char *traerFechaYHoraDinamica(FechaPtr fecha) ///NUEVA
 
 bool esFechaValida(FechaPtr fecha) ///NUEVA
 {
-    bool diaValido=true;
-    bool mesValido=true;
-    bool anioValido=true; //entre 2000 y 2030
-    bool horaValida=true;
-    bool minutoValido=true;
+    bool resultado=true;
+
 
 //    E  F    M  A  M  J  J  A  S  O  N  D  <<<MESES
 //    31 29/8 31 30 31 30 31 31 30 31 30 31 <<<DIAS
 
-    switch(getMes(fecha))
-    {
-    case 1: //enero
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=31);
-        break;
-    case 2: //febrero
+    int n=11;
+    int vecMes[]={31,28,31,30,31,30,31,31,30,31,30,31};
+
+    int mes=getMes(fecha);
+
+    resultado = mes>=1 && mes<=n+1;
+
+    int dia=getDia(fecha);
+
+    if(mes==2)
         if(esBiciesto(fecha))
-            diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=29);
-        else
-            diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=28);
-        break;
-    case 3: //marzo
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=31);
-        break;
-    case 4: //abril
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=30);
-        break;
-    case 5: //mayo
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=31);
-        break;
-    case 6: //junio
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=30);
-        break;
-    case 7: //julio
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=31);
-        break;
-    case 8: //agosto
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=31);
-        break;
-    case 9: //septiembre
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=30);
-        break;
-    case 10: //octubre
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=31);
-        break;
-    case 11: //noviembre
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=30);
-        break;
-    case 12: //diciembre
-        diaValido = (getDia(fecha)>=1) && (getDia(fecha)<=31);
-        break;
-    default:
-        mesValido=false;
-        break;
-    }
+            vecMes[mes-1]++;
 
-    anioValido = (getAnio(fecha)>=2000) && (getAnio(fecha)<=2030);
+    resultado = resultado && (dia>=1 && dia<=vecMes[mes-1]);
 
-    horaValida = (getHora(fecha)>=0) && (getHora(fecha)<=23);
+    resultado = resultado && ((getAnio(fecha)>=2000) && (getAnio(fecha)<=2030)); //entre 2000 y 2030
 
-    minutoValido = (getMinuto(fecha)>=0) && (getMinuto(fecha)<=59);
+    resultado = resultado && ((getHora(fecha)>=0) && (getHora(fecha)<=23));
 
-    return diaValido && mesValido && anioValido && horaValida && minutoValido;
+    resultado = resultado && ((getMinuto(fecha)>=0) && (getMinuto(fecha)<=59));
+
+    return resultado;
 }

@@ -11,7 +11,7 @@
 
 void cargarCuil(CuilPtr cuil)
 {
-    char *strCuil;
+    char strCuil[100];
 
     int i=0;
 
@@ -26,19 +26,18 @@ void cargarCuil(CuilPtr cuil)
         else if(i>0 && i<4)
             setCuil(cuil,strCuil);
         else    //if(i==4)
-            convertirACuilValido(cuil);
-    //lo sometemos a validacion
-        if(!esCuilValido(cuil))
-            sugerirCuilValido(cuil);
+            printf("\n\nIntentos agotados.\n\n");
 
         i++;
+        if(i>1)
+            system("cls");
     } while(!esCuilValido(cuil));
 }
 void cargarDomicilio(DomicilioPtr domicilio)
 {
-    char *calle;
+    char calle[100];
     int altura;
-    char *localidad;
+    char localidad[100];
 
     printf("\n\t\tCalle y Altura [CALLE, ALTURA]: ");
     scanf("%[^,]%*c, %d",calle,&altura);
@@ -80,15 +79,16 @@ void cargarFecha(FechaPtr fecha)
             setMinuto(fecha,minuto);
             if(!esFechaValida(fecha))
                 printf("\n\nFecha invalida. Reingrese la fecha.\n\n");
-            limpiarBufferTeclado();
         }
         primeraVez=false;
+        if(primeraVez==false)
+            system("cls");
     } while (!esFechaValida(fecha));
 }
 
 void actualizarCuil(CuilPtr cuil)
 {
-    char *strCuil;
+    char strCuil[100];
     int i=0;
     do
     {
@@ -99,18 +99,17 @@ void actualizarCuil(CuilPtr cuil)
         if(i<4)
             setCuil(cuil,strCuil);
         else    //if(i==4)
-            convertirACuilValido(cuil);
-    //lo sometemos a validacion
-        if(!esCuilValido(cuil))
-            sugerirCuilValido(cuil);
+            printf("\n\nIntentos agotados.\n\n");
         i++;
+        if(i>1)
+            system("cls");
     } while(!esCuilValido(cuil));
 }
 void actualizarDomicilio(DomicilioPtr domicilio)
 {
-    char *calle;
+    char calle[100];
     int altura;
-    char *localidad;
+    char localidad[100];
 
     printf("\n\t\tCalle y Altura [CALLE, ALTURA]: ");
     scanf("%[^,]%*c, %d",calle,&altura);
@@ -148,14 +147,16 @@ void actualizarFecha(FechaPtr fecha)
         setHora(fecha,hora);
         setMinuto(fecha,minuto);
         if(!esFechaValida(fecha) && i<4)
+        {
             printf("\n\nFecha invalida. Reingrese la fecha.\n\n");
+            presionarEnterYLimpiarPantalla();
+        }
         else if(i==4)
         {
             printf("\n\nSe agotaron los intentos.\n\n");
             presionarEnterYLimpiarPantalla();
             break;
         }
-        limpiarBufferTeclado();
     } while (!esFechaValida(fecha));
 }
 
@@ -232,8 +233,8 @@ void menuCargarPersona(CentroLogisticoPtr centroLogistico,bool esChofer)
     ///Variables para funciones
     int n=0;
     ///Cliente
-    char *nombre;
-    char *apellido;
+    char nombre[100];
+    char apellido[100];
     PersonaPtr persona;
         //Domicilio
     DomicilioPtr domicilio;
@@ -307,9 +308,9 @@ void menuCargarVehiculo(CentroLogisticoPtr centroLogistico)
     int n=0;
     ///Vehiculo
     int tipoVehiculo=0;
-    char *marca=(char*)obtenerMemoria(sizeof(char)*100);
-    char *modelo=(char*)obtenerMemoria(sizeof(char)*100);
-    char *patente=(char*)obtenerMemoria(sizeof(char)*100);
+    char marca[100];
+    char modelo[100];
+    char patente[100];
     VehiculoPtr vehiculo;
 
     do
@@ -353,9 +354,6 @@ void menuCargarVehiculo(CentroLogisticoPtr centroLogistico)
         printf("\n\nVehiculos cargados exitosamente.\n\n");
         presionarEnterYLimpiarPantalla();
     }
-    destruirStringDinamico(marca);
-    destruirStringDinamico(modelo);
-    destruirStringDinamico(patente);
 }
 
 void menuBuscarPaquete(CentroLogisticoPtr centroLogistico)
@@ -421,7 +419,7 @@ void menuBuscarVehiculo(CentroLogisticoPtr centroLogistico)
     int op=0;
     do
     {
-        char *patente;
+        char patente[100];
 
         system("cls");
         printf("BUSCAR VEHICULO\n\n");
@@ -625,8 +623,8 @@ void menuModificarPersona(CentroLogisticoPtr centroLogistico,bool esChofer)
     int op=0;
     int seguirMod=0;
 
-    char *nNombre;
-    char *nApellido;
+    char nNombre[100];
+    char nApellido[100];
 
     DomicilioPtr nuevoDomicilio;
     CuilPtr nuevoCuil;
@@ -721,9 +719,9 @@ void menuModificarVehiculo(CentroLogisticoPtr centroLogistico)
     int seguirMod=0;
 
     int nTipo=0;
-    char *nMarca;
-    char *nModelo;
-    char *nPatente;
+    char nMarca[100];
+    char nModelo[100];
+    char nPatente[100];
 
     system("cls");
     printf("MODIFICAR VEHICULO\n\n");
@@ -812,24 +810,119 @@ void menuModificarVehiculo(CentroLogisticoPtr centroLogistico)
 }
 
 
+void menuArmarReparto(CentroLogisticoPtr centroLogistico)
+{
+    RepartoPtr reparto;
+    int n=0;
+    int k=0;
+    PersonaPtr choferElegido;
+    VehiculoPtr vehiculoElegido;
+
+    FechaPtr fechaSalida;
+    FechaPtr fechaRetorno;
+
+    PilaPtr pilaPaquetesElegidos=crearPila();
+    int cantPaquetesElegidos=0;
+    PaquetePtr paqueteElegido;
+
+    do
+    {
+        system("cls");
+        printf("ARMAR REPARTO\n\n");
+        printf("Ingrese cantidad de repartos a armar: ");
+        scanf("%d",&n);
+        limpiarBufferTeclado();
+
+        if(n<1)
+            printf("\nCantidad incorrecta.\n");
+        presionarEnterYLimpiarPantalla();
+    } while(n<1);
+
+    for(int i=0;i<n;i++)
+    {
+        if(n>1)
+            printf("\n\nREPARTO %d\n\n",i+1);
+
+
+        do
+        {
+            mostrarChoferes(centroLogistico);
+            printf("\n\nSeleccione un chofer ingresando su indice: ");
+            scanf("%d",&k);
+            limpiarBufferTeclado();
+
+            choferElegido=(PersonaPtr)getDatoLista(getPersonas(centroLogistico),k-1);
+            if(getEsChofer(choferElegido)==false)
+            {
+                printf("\n\nERROR: el indice ingresado no corresponde a un chofer. Vuelva a elegir.\n\n");
+                system("cls");
+            }
+        } while(getEsChofer(choferElegido)==false);
+
+        presionarEnterYLimpiarPantalla();
+
+        mostrarVehiculos(centroLogistico);
+        printf("\n\nSeleccione un vehiculo ingresando su indice: ");
+        scanf("%d",&k);
+        limpiarBufferTeclado();
+        vehiculoElegido=getDatoLista(getVehiculos(centroLogistico),k-1);
+
+        presionarEnterYLimpiarPantalla();
+        printf("\n\nFecha de salida:");
+        cargarFecha(fechaSalida);
+        printf("\n\nFecha de retorno:");
+        cargarFecha(fechaRetorno);
+
+        presionarEnterYLimpiarPantalla();
+
+        do
+        {
+            printf("Ingrese cantidad de paquetes a agregar al reparto: ");
+            scanf("%d",&cantPaquetesElegidos);
+            if(n<1)
+            {
+                printf("\n\nERROR: cantidad incorrecta. Vuelva a ingresar.\n\n");
+                presionarEnterYLimpiarPantalla();
+            }
+        } while(n<1);
+
+        for(int j=0;j<cantPaquetesElegidos;j++)
+        {
+            mostrarPaquetes(centroLogistico);
+            if(cantPaquetesElegidos>1)
+                printf("\n\nPaquete N. %d\n",j+1);
+            printf("\n\nSeleccione el paquete a cargar ingresando su indice: ");
+            scanf("%d",&k);
+            limpiarBufferTeclado();
+            paqueteElegido=getDatoLista(getPaquetes(centroLogistico),k-1);
+            apilar(pilaPaquetesElegidos,(PaquetePtr)paqueteElegido);
+            system("cls");
+        }
+
+
+        reparto=armarReparto(choferElegido,vehiculoElegido,fechaSalida,fechaRetorno,pilaPaquetesElegidos);
+        agregarReparto(centroLogistico,reparto);
+
+        printf("\n\nReparto armado exitosamente.\n\n");
+        presionarEnterYLimpiarPantalla();
+    }
+    if(n>1)
+        printf("Repartos cargados exitosamente.\n\n");
+}
+void menuBuscarReparto(CentroLogisticoPtr centroLogistico);
+void menuCerrarReparto(CentroLogisticoPtr centroLogistico);
+void menuActualizarReparto(CentroLogisticoPtr centroLogistico);
+
+
 
 CentroLogisticoPtr menuCrearNuevoCtroLogRapido(CentroLogisticoPtr ctroLog)
 {
-    char *nuevoNombre=(char*)obtenerMemoria(sizeof(char)*100);
+    char nuevoNombre[100];
 
     printf("INGRESE EL NOMBRE DEL CENTRO LOGISTICO: ");
     scanf("%[^\n]%*c",nuevoNombre);
-/*
-    printf("Antes del realloc: %s\n%d\n\n",nuevoNombre,(int)strlen(nuevoNombre));
 
-    nuevoNombre=realloc(nuevoNombre,sizeof(strlen(nuevoNombre)+1));
-    *(nuevoNombre+(strlen(nuevoNombre)+1))=0;
-
-    printf("Despues del realloc: %s\n%d\n\n",nuevoNombre,(int)strlen(nuevoNombre)+1);
-*/
     ctroLog=crearCentroLogisticoRapido(nuevoNombre);
-
-    destruirStringDinamico(nuevoNombre);
 
     return ctroLog;
 }

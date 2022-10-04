@@ -110,21 +110,6 @@ int getNVerificador(CuilPtr cuil);
 //Devuelve true si es valido, false de lo contrario
 bool esCuilValido(CuilPtr cuil); ///NUEVA - NO APTA PARA TIPO EMPRESA
 
-//Operación: sugiere un cuil valido a partir del que se recibe
-//Precondición: cuil debe haber sido creado con crearCuil()
-//Postcondición: imprime una sugerencia de cuil valido por pantalla
-//Parámetros: puntero a estructura cuil de la cual se quiere mostrar sugerencia
-//No devuelve nada.
-void sugerirCuilValido(CuilPtr cuil);
-
-//Operación: convierte el cuil recibido a un cuil valido (si era invalido)
-//Precondición: cuil debe haber sido creado con crearCuil()
-//Postcondición: cuil cambia a un nuevo valor válido
-//Parámetros: puntero a estructura cuil que se quiere convertir
-//No devuelve nada.
-///ADVERTENCIA: Cambia el cuil original aunque la conversion falle.
-void convertirACuilValido(CuilPtr cuil);
-
 ///*****************************************************************************************************
 
 //Operación: menú de ayuda de CUIL
