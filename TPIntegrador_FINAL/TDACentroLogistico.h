@@ -361,7 +361,7 @@ void resetearVehiculos(CentroLogisticoPtr centroLogistico);
 //Parámetros:
 // centroLogistico: puntero a estructura que representa al centro logistico.
 //Devuelve: nada.
-void resetearRepartos(CentroLogisticoPtr centroLogistico);
+void resetearRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto);
 //---------------------------------------Funciones de ordenamiento------------------------------------------------
 
 //Operación: ordena una lista de vehiculos por marca, alfabéticamente
@@ -385,42 +385,42 @@ void ordenarPorID(CentroLogisticoPtr centroLogistico);
 //               segun su fecha de salida
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorFechaSalida(CentroLogisticoPtr centroLogistico);
+void ordenarPorFechaSalida(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto);
 //Operación: ordena una lista de repartos por fecha de retorno, de X a Y.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados
 //               segun su fecha de retorno
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorFechaRetorno(CentroLogisticoPtr centroLogistico);
+void ordenarPorFechaRetorno(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto);
 //Operación: ordena una lista de repartos por fecha de salida y retorno, de X a Y.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados
 //               segun su fecha de salida y retorno
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorFechaRepartos(CentroLogisticoPtr centroLogistico);
+void ordenarPorFechaRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto);
 //Operación: ordena una lista de repartos alfabéticamente por nombre del chofer.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun el
 //               nombre del chofer
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorNombreChofer(CentroLogisticoPtr centroLogistico);
+void ordenarPorNombreChofer(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto);
 //Operación: ordena una lista de repartos alfabéticamente por apellido del chofer.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun el
 //               apellido del chofer
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorApellidoChofer(CentroLogisticoPtr centroLogistico);
+void ordenarPorApellidoChofer(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto);
 //Operación: ordena una lista de repartos alfabéticamente por nombre y apellido del chofer.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun el
 //               nombre y el apellido del chofer
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorChoferRepartos(CentroLogisticoPtr centroLogistico);
+void ordenarPorChoferRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto);
 
 
 #endif // TDACENTROLOGISTICO_H_INCLUDED

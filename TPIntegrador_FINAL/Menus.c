@@ -981,22 +981,22 @@ void menuMostrarRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbiert
                 switch(op1)
                 {
                 case 1:
-                    ordenarPorFechaSalida(centroLogistico);
+                    ordenarPorFechaSalida(centroLogistico,esRepartoAbierto);
                     break;
                 case 2:
-                    ordenarPorFechaRetorno(centroLogistico);
+                    ordenarPorFechaRetorno(centroLogistico,esRepartoAbierto);
                     break;
                 case 3:
-                    ordenarPorFechaRepartos(centroLogistico);
+                    ordenarPorFechaRepartos(centroLogistico,esRepartoAbierto);
                     break;
                 case 4:
-                    ordenarPorNombreChofer(centroLogistico);
+                    ordenarPorNombreChofer(centroLogistico,esRepartoAbierto);
                     break;
                 case 5:
-                    ordenarPorApellidoChofer(centroLogistico);
+                    ordenarPorApellidoChofer(centroLogistico,esRepartoAbierto);
                     break;
                 case 6:
-                    ordenarPorChoferRepartos(centroLogistico);
+                    ordenarPorChoferRepartos(centroLogistico,esRepartoAbierto);
                     break;
                 case 0:
                     break;

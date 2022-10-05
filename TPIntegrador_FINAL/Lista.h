@@ -49,7 +49,7 @@ bool listaVacia(ListaPtr lista);
 // Postcondición: ninguna
 // Parámetros:
 //  Puntero a la lista que se desea saber si se encuentra vacía
-// Devuelve true si la lista se encuentra vacía (PtrLista=FinLista), false de otro modo
+// Devuelve true si la lista se encuentra vacía (ListaPtr=FinLista), false de otro modo
 
 
 PtrDato getDatoLista(ListaPtr lista,int posicion);

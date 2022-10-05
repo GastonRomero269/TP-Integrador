@@ -148,14 +148,24 @@ void setHora(FechaPtr fecha,int hora);
 //  minuto: entero representando el nuevo valor de los minutos
 //No devuelve nada
 void setMinuto(FechaPtr fecha,int minuto);
-// Operación de resta de fechas
-// Precondición: fecha1 y fecha2 deben haberse creado
-// Postcondición: se obtiene la diferencia entre ambdas fechas (fecha1-fecha2) en días
-// Parámetros:
+//Operación: de resta de fechas
+//Precondición: fecha1 y fecha2 deben haberse creado
+///Postcondición: se obtiene la diferencia entre ambas fechas (fecha1-fecha2) en días, horas y minutos.
+//Parámetros:
 //  fecha1: TDAFecha al que se restará fecha2
 //  fecha2: TDAFecha que restará a fecha1
-// Devuelve un entero representando la diferencia en días
-int calcularDiferenciaFechas(FechaPtr fecha1,FechaPtr fecha2);
+///Devuelve un vector de enteros de 3 posiciones representando la diferencia entre fechas, de esta forma:
+///             - Posición 0: diferencia en días.
+///             - Posición 1: diferencia en horas.
+///             - Posición 2: diferencia en minutos.
+///     Para cualquiera de sus posiciones, si:
+///             - diferencias==0, no hay diferencia en ese campo.
+///             - diferencia<0, fecha1 es menor a fecha2 (es decir, fecha1 sucede antes que fecha2)
+///             - diferencia>0, fecha1 es mayor a fecha2 (es decir, fecha1 sucede después que fecha2)
+
+///     *** Si diferencia==0 EN TODAS SUS POSICIONES, entonces las fechas son totalmente idénticas.
+///     ADVERTENCIA: manejar con cuidado, chequeando siempre con lo explicado acá.
+int *calcularDiferenciaFechas(FechaPtr fecha1,FechaPtr fecha2); ///Nueva implementación
 // Operación de conversión a string
 // Precondición: fecha debe haberse creado
 // Postcondición: se obtiene la representación "dd/mm/aaaa" de la fecha

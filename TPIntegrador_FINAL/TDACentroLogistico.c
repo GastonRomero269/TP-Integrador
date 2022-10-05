@@ -72,9 +72,9 @@ ListaPtr getVehiculos(CentroLogisticoPtr centroLogistico)
 ListaPtr getRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto)
 {
 	if(esRepartoAbierto)
-		return centroLogistico->repartosAbiertos;
+		return centroLogistico->listaRepartosAbiertos;
 	else
-		return centroLogistico->repartosCerrados;
+		return centroLogistico->listaRepartosCerrados;
 }
 
 void setNombreCentroLogistico(CentroLogisticoPtr centroLogistico,char *nombre)
@@ -469,11 +469,13 @@ void resetearVehiculos(CentroLogisticoPtr centroLogistico)
         vehiculoEliminar=destruirVehiculo(vehiculoEliminar);
     }
 }
-void resetearRepartos(CentroLogisticoPtr centroLogistico)
+void resetearRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
 {
-    while(!listaVacia(centroLogistico->listaRepartos))
+    ListaPtr listaAux=getRepartos(centroLogistico,esRepartoAbierto);
+
+    while(!listaVacia(listaAux))
     {
-        RepartoPtr repartoEliminar=(RepartoPtr)removerDeLista(centroLogistico->listaRepartos,0);
+        RepartoPtr repartoEliminar=(RepartoPtr)removerDeLista(listaAux,0);
         repartoEliminar=cerrarReparto(repartoEliminar); //usamos cerrar reparto porque la destructora es una funcion privada.
     }
 }
@@ -481,281 +483,243 @@ void resetearRepartos(CentroLogisticoPtr centroLogistico)
 ///FUNCIONES DE ORDENAMIENTO
 void ordenarPorMarca(CentroLogisticoPtr centroLogistico)
 {
-    int i=0;
-    ListaPtr listaVehiculos=crearLista();
-    listaVehiculos = getVehiculos(centroLogistico);
-    ListaPtr listaAux = crearLista();
-    int n = longitudLista(listaVehiculos);
+    int n=longitudLista(getVehiculos(centroLogistico));
+
     VehiculoPtr vehiculos[n];
     VehiculoPtr vehiculoAux;
 
-    while(!listaVacia(listaVehiculos))
-    {
-        vehiculos[i] = getCabecera(listaVehiculos);
-        PtrLista listaADestruir = listaVehiculos;
-        listaVehiculos = getResto(listaVehiculos);
-        i++;
-    }
-    destruirLista(listaVehiculos, false);
+    for(int i=0;i<n;i++) ///Primero, vaciamos la lista en el vector
+        vehiculos[i]=removerVehiculo(centroLogistico,0);
 
-    for(int i=0; i<n-1 ; i++){
-        for(int j=i; j<longitudlistaVehiculos-1; j++){
-            if(strcmp(getMarca(getDatoLista(listaVehiculos,j)), getMarca(getDatoLista(listaVehiculos,j+1))) == 0){
-                vehiculoAux = vehiculos[j];
-                vehiculos[j] = vehiculos[j+1];
-                vehiculos[j+1] = vehiculoAux;
+///Luego, ordenamos el vector (m. burbuja)
+    for(int i=0; i<n-1 ; i++)
+    {
+        for(int j=i; j<n-1; j++)
+        {
+            int diferenciaMarcas = strcmp(getMarca(vehiculos[j]),getMarca(vehiculos[j+1]));
+            bool condicion = diferenciaMarcas > 0;
+        //condicion de la bandera: "Si la marca de vehiculos[j] es posterior a la de vehiculos[j+1]..."
+            if(condicion)
+            { //Hago un swap
+                vehiculoAux=vehiculos[j];
+                vehiculos[j]=vehiculos[j+1];
+                vehiculos[j+1]=vehiculoAux;
             }
         }
     }
-
-    ListaPtr listaNuevaVehiculos = crearLista();
-    for(int i=0; i<n ; i++){
-        agregarDatoLista(listaNuevaVehiculos, vehiculos[i]);
-    }
-
-    setVehiculos(centroLogistico, listaNuevaVehiculos);
-    listaAux = destruirLista(listaAux,true);
-    listaVehiculos = destruirLista(listaVehiculos, true);
+///Finalmente, agregamos nuevamente los elementos ordenados a la lista
+    for(int i=0; i<n; i++)
+        agregarVehiculo(centroLogistico,vehiculos[i]);
 }
 void ordenarPorID(CentroLogisticoPtr centroLogistico)
 {
-    int i=0;
-    ListaPtr listaPaquetes = crearLista();
-    listaPaquetes = getPaquetes(centroLogistico);
-    ListaPtr listaAux = crearLista();
-    int n = longitudLista(listaPaquetes);
+    int n=longitudLista(getPaquetes(centroLogistico));
+
     PaquetePtr paquetes[n];
     PaquetePtr paqueteAux;
 
-    while(!listaVacia(listaPaquetes))
-    {
-        paquetes[i] = getCabecera(listaPaquetes);
-        PtrLista listaADestruir = listaPaquetes;
-        listaPaquetes = getResto(listaPaquetes);
-        i++;
-    }
-    destruirLista(listaPaquetes, false);
+    for(int i=0;i<n;i++) ///Primero, vaciamos la lista en el vector
+        paquetes[i]=removerPaquete(centroLogistico,0);
 
-    for(int i=0; i<n-1 ; i++){
-        for(int j=i; j<n-1; j++){
-            if(getID(getDatoLista(listaPaquetes,j)) > getID(getDatoLista(listaPaquetes,j+1))){
-                paqueteAux = paquetes[j];
-                paquetes[j] = paquetes[j+1];
-                paquetes[j+1] = paqueteAux;
+///Luego, ordenamos el vector (m. burbuja)
+    for(int i=0; i<n-1 ; i++)
+    {
+        for(int j=i; j<n-1; j++)
+        {
+            bool condicion = getID(paquetes[j]) > getID(paquetes[j+1]);
+        //condicion de la bandera: "Si el ID de paquetes[j] es mayor al de paquetes[j+1]..."
+            if(condicion)
+            { //Hago un swap
+                paqueteAux=paquetes[j];
+                paquetes[j]=paquetes[j+1];
+                paquetes[j+1]=paqueteAux;
             }
         }
     }
-
-    ListaPtr listaNuevaPaquetes = crearLista();
-    for(int i=0; i<n ; i++){
-        agregarDatoLista(listaNuevaPaquetes, paquetes[i]);
-    }
-
-    setPaquetes(centroLogistico, listaNuevaPaquetes);
-    listaAux = destruirLista(listaAux,true);
-    listaPaquetes = destruirLista(listaPaquetes, true);
+///Finalmente, agregamos nuevamente los elementos ordenados a la lista
+    for(int i=0; i<n; i++)
+        agregarPaquete(centroLogistico,paquetes[i]);
 }
 
-void ordenarPorFechaSalida(CentroLogisticoPtr centroLogistico)
+void ordenarPorFechaSalida(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
 {
-    int i=0;
-    ListaPtr listaRepartos=crearLista();
-    listaRepartos=getRepartos(centroLogistico);
-    ListaPtr listaAux=crearLista();
-    int n=longitudLista(listaRepartos);
+    int n=longitudLista(getRepartos(centroLogistico,esRepartoAbierto));
+
     RepartoPtr repartos[n];
     RepartoPtr repartoAux;
-    while(!listaVacia(listaRepartos))
+
+    for(int i=0;i<n;i++) ///Primero, vaciamos la lista en el vector
+        repartos[i]=removerReparto(centroLogistico,0,esRepartoAbierto);
+
+///Luego, ordenamos el vector (m. burbuja)
+    for(int i=0; i<n-1 ; i++)
     {
-        repartos[i]=getCabecera(listaRepartos);
-        ListaPtr listaADestruir = listaRepartos;
-        listaRepartos = getResto(listaRepartos);
-        i++;
-    }
-    destruirLista(listaRepartos, false);
-    for(int i=0; i<n-1 ; i++){
-        for(int j=i; j<n-1; j++){
-            if(repartos[j]->fechaSalida > repartos[j+1]->fechaSalida){
+        for(int j=i; j<n-1; j++)
+        {
+            int *diferenciaFechas = calcularDiferenciaFechas(getFechaSalida(repartos[j]),getFechaSalida(repartos[j+1]));
+            bool condicion = diferenciaFechas[0]>0 || diferenciaFechas[1]>0 || diferenciaFechas[2]>0;
+        //condicion de la bandera: "Ya sea en dias, horas o minutos, si fechaDeSalida de reparto[j] es posterior a la de repartos[j+1]..."
+            if(condicion)
+            { //Hago un swap
                 repartoAux=repartos[j];
                 repartos[j]=repartos[j+1];
                 repartos[j+1]=repartoAux;
             }
         }
     }
-    ListaPtr listaNuevaRepartos=crearLista();
-    for(int i=0; i<n; i++){
-        agregarDatoLista(listaNuevaRepartos, repartos[i]);
-    }
-    setRepartos(centroLogistico,listaNuevaRepartos);
-    listaAux=destruirLista(listaAux,true);
-    listaRepartos=destruirLista(listaRepartos,true);
+///Finalmente, agregamos nuevamente los elementos ordenados a la lista
+    for(int i=0; i<n; i++)
+        agregarReparto(centroLogistico,repartos[i],esRepartoAbierto);
 }
-void ordenarPorFechaRetorno(CentroLogisticoPtr centroLogistico)
+void ordenarPorFechaRetorno(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
 {
-    int i=0;
-    ListaPtr listaRepartos=crearLista();
-    listaRepartos=getRepartos(centroLogistico);
-    ListaPtr listaAux=crearLista();
-    int n=n;
+    int n=longitudLista(getRepartos(centroLogistico,esRepartoAbierto));
+
     RepartoPtr repartos[n];
     RepartoPtr repartoAux;
-    while(!listaVacia(listaRepartos))
+
+    for(int i=0;i<n;i++) ///Primero, vaciamos la lista en el vector
+        repartos[i]=removerReparto(centroLogistico,0,esRepartoAbierto);
+
+///Luego, ordenamos el vector (m. burbuja)
+    for(int i=0; i<n-1 ; i++)
     {
-        repartos[i]=getCabecera(listaRepartos);
-        ListaPtr listaADestruir = listaRepartos;
-        listaRepartos = getResto(listaRepartos);
-        i++;
-    }
-    destruirLista(listaRepartos, false);
-    for(int i=0; i<n-1 ; i++){
-        for(int j=i; j<n-1; j++){
-            if(repartos[j]->fechaRetorno > repartos[j+1]->fechaRetorno){
+        for(int j=i; j<n-1; j++)
+        {
+            int *diferenciaFechas = calcularDiferenciaFechas(getFechaRetorno(repartos[j]),getFechaRetorno(repartos[j+1]));
+            bool condicion = diferenciaFechas[0]>0 || diferenciaFechas[1]>0 || diferenciaFechas[2]>0;
+        //condicion de la bandera: "Ya sea en dias, horas o minutos, si fechaDeRetorno de reparto[j] es posterior a la de repartos[j+1]..."
+            if(condicion)
+            { //Hago un swap
                 repartoAux=repartos[j];
                 repartos[j]=repartos[j+1];
                 repartos[j+1]=repartoAux;
             }
         }
     }
-    ListaPtr listaNuevaRepartos=crearLista();
-    for(int i=0; i<n; i++){
-        agregarDatoLista(listaNuevaRepartos, repartos[i]);
-    }
-    setRepartos(centroLogistico,listaNuevaRepartos);
-    listaAux=destruirLista(listaAux,true);
-    listaRepartos=destruirLista(listaRepartos,true);
+///Finalmente, agregamos nuevamente los elementos ordenados a la lista
+    for(int i=0; i<n; i++)
+        agregarReparto(centroLogistico,repartos[i],esRepartoAbierto);
 }
-void ordenarPorFechaRepartos(CentroLogisticoPtr centroLogistico)
+void ordenarPorFechaRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
 {
-    int i=0;
-    ListaPtr listaRepartos=crearLista();
-    listaRepartos=getRepartos(centroLogistico);
-    ListaPtr listaAux=crearLista();
-    int n=n;
+    int n=longitudLista(getRepartos(centroLogistico,esRepartoAbierto));
+
     RepartoPtr repartos[n];
     RepartoPtr repartoAux;
-    while(!listaVacia(listaRepartos))
+
+    for(int i=0;i<n;i++) ///Primero, vaciamos la lista en el vector
+        repartos[i]=removerReparto(centroLogistico,0,esRepartoAbierto);
+
+///Luego, ordenamos el vector (m. burbuja)
+    for(int i=0; i<n-1 ; i++)
     {
-        repartos[i]=getCabecera(listaRepartos);
-        ListaPtr listaADestruir = listaRepartos;
-        listaRepartos = getResto(listaRepartos);
-        i++;
-    }
-    destruirLista(listaRepartos, false);
-    for(int i=0; i<n-1 ; i++){
-        for(int j=i; j<n-1; j++){
-            if(repartos[j]->fechaSalida > repartos[j+1]->fechaSalida && repartos[j]->fechaRetorno > repartos[j+1]->fechaRetorno){
+        for(int j=i; j<n-1; j++)
+        {
+            int *diferenciaFechaSalida = calcularDiferenciaFechas(getFechaSalida(repartos[j]),getFechaSalida(repartos[j+1]));
+            bool condicion = diferenciaFechaSalida[0]>0 || diferenciaFechaSalida[1]>0 || diferenciaFechaSalida[2]>0; //agrego la condicion de fechaSalida
+            int *diferenciaFechaRetorno = calcularDiferenciaFechas(getFechaRetorno(repartos[j]),getFechaRetorno(repartos[j+1]));
+            condicion = condicion && (diferenciaFechaRetorno[0]>0 || diferenciaFechaRetorno[1]>0 || diferenciaFechaRetorno[2]>0); //sumo la condicion de fechaRetorno
+///condicion de la bandera: "Ya sea en dias, horas o minutos, si fechaDeSalida *Y* fechaDeRetorno de reparto[j] son posteriores a las de repartos[j+1]..."
+            if(condicion)
+            { //Hago un swap
                 repartoAux=repartos[j];
                 repartos[j]=repartos[j+1];
                 repartos[j+1]=repartoAux;
             }
         }
     }
-    ListaPtr listaNuevaRepartos=crearLista();
-    for(int i=0; i<n; i++){
-        agregarDatoLista(listaNuevaRepartos, repartos[i]);
-    }
-    setRepartos(centroLogistico,listaNuevaRepartos);
-    listaAux=destruirLista(listaAux,true);
-    listaRepartos=destruirLista(listaRepartos,true);
+///Finalmente, agregamos nuevamente los elementos ordenados a la lista
+    for(int i=0; i<n; i++)
+        agregarReparto(centroLogistico,repartos[i],esRepartoAbierto);
 }
-void ordenarPorNombreChofer(CentroLogisticoPtr centroLogistico)
+void ordenarPorNombreChofer(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
 {
-    int i=0;
-    ListaPtr listaChoferes=crearLista();
-    listaChoferes=getPersonas(centroLogistico);
+    int n=longitudLista(getRepartos(centroLogistico,esRepartoAbierto));
 
-    int longitudPersonas=longitudLista(listaChoferes);
-    PersonaPtr personas[longitudPersonas];
-    PersonaPtr personaAux;
-    while(!listaVacia(listaChoferes))
+    RepartoPtr repartos[n];
+    RepartoPtr repartoAux;
+
+    for(int i=0;i<n;i++) ///Primero, vaciamos la lista en el vector
+        repartos[i]=removerReparto(centroLogistico,0,esRepartoAbierto);
+
+///Luego, ordenamos el vector (m. burbuja)
+    for(int i=0; i<n-1 ; i++)
     {
-        personas[i]=getCabecera(listaChoferes);
-        ListaPtr listaADestruir = listaChoferes;
-        listaChoferes = getResto(listaChoferes);
-        i++;
-    }
-    destruirLista(listaChoferes, false);
-    for(int i=0;i<longitudPersonas;i++){
-        for(int j=i;j<longitudPersonas;j++){
-            if(strcmp(getNombre(personas[j]), getNombre(personas[j+1]))==0){
-                personaAux=personas[j];
-                personas[j]=personas[j+1];
-                personas[j+1]=personaAux;
+        for(int j=i; j<n-1; j++)
+        {
+            bool condicion = strcmp(getNombre(getChofer(repartos[j])),getNombre(getChofer(repartos[j+1]))) > 0;
+        //condicion de la bandera: "Si el nombre del chofer del reparto en j va después del del reparto en j+1..."
+            if(condicion)
+            { //Hago un swap
+                repartoAux=repartos[j];
+                repartos[j]=repartos[j+1];
+                repartos[j+1]=repartoAux;
             }
         }
     }
-    ListaPtr listaNuevaPersonas=crearLista();
-    for(int i=0;i<longitudPersonas;i++){
-        agregarDatoLista(listaNuevaPersonas,personas[i]);
-    }
-    setPersonas(centroLogistico,listaNuevaPersonas);
-    listaChoferes=destruirLista(listaChoferes,true);
+///Finalmente, agregamos nuevamente los elementos ordenados a la lista
+    for(int i=0; i<n; i++)
+        agregarReparto(centroLogistico,repartos[i],esRepartoAbierto);
 }
-void ordenarPorApellidoChofer(CentroLogisticoPtr centroLogistico)
+void ordenarPorApellidoChofer(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
 {
-    int i=0;
-    ListaPtr listaChoferes=crearLista();
-    listaChoferes=getPersonas(centroLogistico);
+    int n=longitudLista(getRepartos(centroLogistico,esRepartoAbierto));
 
-    int longitudPersonas=longitudLista(listaChoferes);
-    PersonaPtr personas[longitudPersonas];
-    PersonaPtr personaAux;
-    while(!listaVacia(listaChoferes))
+    RepartoPtr repartos[n];
+    RepartoPtr repartoAux;
+
+    for(int i=0;i<n;i++) ///Primero, vaciamos la lista en el vector
+        repartos[i]=removerReparto(centroLogistico,0,esRepartoAbierto);
+
+///Luego, ordenamos el vector (m. burbuja)
+    for(int i=0; i<n-1 ; i++)
     {
-        personas[i]=getCabecera(listaChoferes);
-        ListaPtr listaADestruir = listaChoferes;
-        listaChoferes = getResto(listaChoferes);
-        i++;
-    }
-    destruirLista(listaChoferes, false);
-    for(int i=0;i<longitudPersonas;i++){
-        for(int j=i;j<longitudPersonas;j++){
-            if(strcmp(getApellido(personas[j]), getApellido(personas[j+1]))==0){
-                personaAux=personas[j];
-                personas[j]=personas[j+1];
-                personas[j+1]=personaAux;
+        for(int j=i; j<n-1; j++)
+        {
+            bool condicion = strcmp(getApellido(getChofer(repartos[j])),getApellido(getChofer(repartos[j+1]))) > 0;
+        //condicion de la bandera: "Si el nombre del chofer del reparto en j va después del del reparto en j+1..."
+            if(condicion)
+            { //Hago un swap
+                repartoAux=repartos[j];
+                repartos[j]=repartos[j+1];
+                repartos[j+1]=repartoAux;
             }
         }
     }
-    ListaPtr listaNuevaPersonas=crearLista();
-    for(int i=0;i<longitudPersonas;i++){
-        agregarDatoLista(listaNuevaPersonas,personas[i]);
-    }
-    setPersonas(centroLogistico,listaNuevaPersonas);
-    listaChoferes=destruirLista(listaChoferes,true);
+///Finalmente, agregamos nuevamente los elementos ordenados a la lista
+    for(int i=0; i<n; i++)
+        agregarReparto(centroLogistico,repartos[i],esRepartoAbierto);
 }
-void ordenarPorChoferRepartos(CentroLogisticoPtr centroLogistico)
+void ordenarPorChoferRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
 {
-    int i=0;
-    ListaPtr listaChoferes=crearLista();
-    listaChoferes=getPersonas(centroLogistico);
+    int n=longitudLista(getRepartos(centroLogistico,esRepartoAbierto));
 
-    int longitudPersonas=longitudLista(listaChoferes);
-    PersonaPtr personas[longitudPersonas];
-    PersonaPtr personaAux;
-    while(!listaVacia(listaChoferes))
+    RepartoPtr repartos[n];
+    RepartoPtr repartoAux;
+
+    for(int i=0;i<n;i++) ///Primero, vaciamos la lista en el vector
+        repartos[i]=removerReparto(centroLogistico,0,esRepartoAbierto);
+
+///Luego, ordenamos el vector (m. burbuja)
+    for(int i=0; i<n-1 ; i++)
     {
-        personas[i]=getCabecera(listaChoferes);
-        ListaPtr listaADestruir = listaChoferes;
-        listaChoferes = getResto(listaChoferes);
-        i++;
-    }
-    destruirLista(listaChoferes, false);
-    for(int i=0;i<longitudPersonas;i++){
-        for(int j=i;j<longitudPersonas;j++){
-           if(strcmp(getNombre(personas[j]), getNombre(personas[j+1]))==0){
-               if(strcmp(getApellido(personas[j]), getApellido(personas[j+1]))==0){
-                    personaAux=personas[j];
-                    personas[j]=personas[j+1];
-                    personas[j+1]=personaAux;
-                }
+        for(int j=i; j<n-1; j++)
+        {
+            int diferenciaApellidos = strcmp(getApellido(getChofer(repartos[j])),getApellido(getChofer(repartos[j+1])));
+            bool condicion = diferenciaApellidos > 0;
+            int diferenciaNombres = strcmp(getNombre(getChofer(repartos[j])),getNombre(getChofer(repartos[j+1])));
+            condicion = condicion && diferenciaNombres > 0;
+        //condicion de la bandera: "Si el APELLIDO Y NOMBRE del chofer del reparto en j van después de los del chofer del reparto en j+1..."
+            if(condicion)
+            { //Hago un swap
+                repartoAux=repartos[j];
+                repartos[j]=repartos[j+1];
+                repartos[j+1]=repartoAux;
             }
         }
     }
-    ListaPtr listaNuevaPersonas=crearLista();
-    for(int i=0;i<longitudPersonas;i++){
-        agregarDatoLista(listaNuevaPersonas,personas[i]);
-    }
-    setPersonas(centroLogistico,listaNuevaPersonas);
-    listaChoferes=destruirLista(listaChoferes,true);
+///Finalmente, agregamos nuevamente los elementos ordenados a la lista
+    for(int i=0; i<n; i++)
+        agregarReparto(centroLogistico,repartos[i],esRepartoAbierto);
 }

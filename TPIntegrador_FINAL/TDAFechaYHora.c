@@ -120,60 +120,31 @@ void setMinuto(FechaPtr fecha,int minuto) ///NUEVA
 {
     fecha->minuto=minuto;
 }
-//Operaciónes
-int calcularDiferenciaFechas(FechaPtr fecha1,FechaPtr fecha2)
-{//antes podía devolver una diferencia negativa, y eso no puede ser,
-//ya que la diferencia entre dos números es siempre positiva (módulo)
-//hay que convertir los casos en donde da negativo, a positivo
-    int diferencia=fecha1->diaJuliano - fecha2->diaJuliano;
-    if((diferencia)<0)
-    {
-        return diferencia-(2*diferencia);
-    }
-    else
-    {
-        return diferencia;
-    }
+//Operaciones
+int *calcularDiferenciaFechas(FechaPtr fecha1,FechaPtr fecha2) ///Nueva implementación
+{
+    int diferencias[3] = {0,0,0}; //Definimos e inicializamos el vector
+
+    diferencias[0] = getDiaJuliano(fecha1) - getDiaJuliano(fecha2);
+    diferencias[1] = getHora(fecha1) - getHora(fecha2);
+    diferencias[2] = getMinuto(fecha1) - getMinuto(fecha2);
+
+    return diferencias;
 }
 void traerFechaCorta(FechaPtr fecha,char *buffer)
-{   //problema: no funciona con días o meses de 1 digito.
-    //queremos que la longitud del string cambie si ocurre alguna de estas cosas.
-    //si dia<10 entonces ponemos '/' un espacio antes, al igual que el resto de
-    //caracteres sucesivos.
-    //hacemos lo mismo si mes<10.
+{ /**OPTIMIZACION DE LA FUNCIÓN:
+En lugar de calcular donde poner las barras haciendo una cadena de ifs
+que contemplen la cantidad de dígitos posibles del día y mes de la fecha,
+Usamos la funcion strcat, con lo que concatenamos la barra al final del
+string como esta en ese momento, sin importar que tantos dígitos tengan
+los meses y días de la fecha.
+*/
 
-    if(getDia(fecha)<10 && getMes(fecha)<10) //las barras y el anio quedan 2 posiciones más adelante
-    {
-        sprintf(buffer,"%d",getDia(fecha));
-        *(buffer +1)='/';
-        sprintf(buffer+2,"%d",getMes(fecha));
-        *(buffer +3)='/';
-        sprintf(buffer+4,"%d",getAnio(fecha));
-    }
-    else if(getDia(fecha)<10) //de dia en adelante todo se corre 1 posicion
-    {
-        sprintf(buffer,"%d",getDia(fecha));
-        *(buffer +1)='/';
-        sprintf(buffer+2,"%d",getMes(fecha));
-        *(buffer +4)='/';
-        sprintf(buffer+5,"%d",getAnio(fecha));
-    }
-    else if (getMes(fecha)<10)//de mes en adelante todo se corre 1 posicion
-    {
-        sprintf(buffer,"%d",getDia(fecha));
-        *(buffer +2)='/';
-        sprintf(buffer+3,"%d",getMes(fecha));
-        *(buffer +4)='/';
-        sprintf(buffer+5,"%d",getAnio(fecha));
-    }
-    else
-    {
-        sprintf(buffer,"%d",getDia(fecha));
-        *(buffer +2)='/';
-        sprintf(buffer+3,"%d",getMes(fecha));
-        *(buffer +5)='/';
-        sprintf(buffer+6,"%d",getAnio(fecha));
-    }
+    sprintf(buffer,"%d",getDia(fecha)); //insertamos el día
+    strcat(buffer,"/"); ///insertamos la barra al final del string
+    sprintf(buffer+strlen(buffer),"%d",getMes(fecha)); //repetimos para mes y año
+    strcat(buffer,"/");
+    sprintf(buffer+strlen(buffer),"%d",getAnio(fecha));
 }
 char *traerFechaCortaDinamica(FechaPtr fecha)
 {
@@ -205,9 +176,7 @@ void diaSemanaStr(FechaPtr fecha,char *buffer)
     strcpy(buffer,dias[res]);
 }
 void traerFechaLarga(FechaPtr fecha, char* buffer)
-{
-    /*
-    PROCESO
+{ /* PROCESO:
     1. Almacenamos el día de la semana.
     2. Ponemos la coma, el espacio y metemos el día.
     3. Ponemos " de " y el mes.
@@ -218,7 +187,7 @@ void traerFechaLarga(FechaPtr fecha, char* buffer)
     con la longitud resultante del string, por lo que usar
     strlen() y sprintf se encargaría de medir cada una de
     estas palabras, resolviendo el problema.
-    */
+*/
 
 
     char *diaSemana=(char*)obtenerMemoria((sizeof(char)*9)+1);
@@ -250,7 +219,7 @@ void traerFechaYHora(FechaPtr fecha,char *buffer) ///NUEVA
     sprintf(buffer+strlen(buffer),"%d",getHora(fecha));
     strcat(buffer,":");
     sprintf(buffer+strlen(buffer),"%d",getMinuto(fecha));
-}// Nota: cuando usamos buffer+strlen(buffer), realmente no hace falta restar nada. Así como está, está bien.
+}/// Nota: cuando usamos buffer+strlen(buffer), realmente no hace falta restar nada. Así como está, está bien.
 char *traerFechaYHoraDinamica(FechaPtr fecha) ///NUEVA
 {
     char *buffer=(char*)obtenerMemoria(sizeof(char)*18);
@@ -262,7 +231,6 @@ char *traerFechaYHoraDinamica(FechaPtr fecha) ///NUEVA
 bool esFechaValida(FechaPtr fecha) ///NUEVA
 {
     bool resultado=true;
-
 
 //    E  F    M  A  M  J  J  A  S  O  N  D  <<<MESES
 //    31 29/8 31 30 31 30 31 31 30 31 30 31 <<<DIAS
