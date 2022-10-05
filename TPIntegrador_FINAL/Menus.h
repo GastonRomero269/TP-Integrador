@@ -253,7 +253,7 @@ void menuActualizarReparto(CentroLogisticoPtr centroLogistico);
 //PARÁMETROS:
 //  centroLogistico: puntero a la estructura centro logistico
 //DEVUELVE: nada.
-void menuMostrarRepartos(CentroLogisticoPtr centroLogistico);
+void menuMostrarRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto);
 
 
 ///--------------------------------------------------------------------------------------------------------------------------

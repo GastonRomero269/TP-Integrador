@@ -757,7 +757,7 @@ bool guardarListaVehiculos(CentroLogisticoPtr centroLogistico)
         return true;
     }
 }
-bool guardarListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
+bool guardarListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto)
 {
     FILE *archivo;
 	if(esRepartoAbierto)
@@ -1179,7 +1179,7 @@ bool abrirListaVehiculos(CentroLogisticoPtr centroLogistico)
         return true;
     }
 }
-bool abrirListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
+bool abrirListaRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto)
 {
     FILE *archivo;
 	if(esRepartoAbierto)

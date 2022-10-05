@@ -11,7 +11,7 @@
 #include "util.h"
 
 
-CentroLogisticoPtr crearCentroLogistico(char *nombre,ListaPtr listaPaquetes,ListaPtr listaPersonas,ListaPtr listaVehiculos,ListaPtr listaRepartos)
+CentroLogisticoPtr crearCentroLogistico(char *nombre,ListaPtr listaPaquetes,ListaPtr listaPersonas,ListaPtr listaVehiculos,ListaPtr listaRepartosAbiertos,ListaPtr listaRepartosCerrados)
 {
     CentroLogisticoPtr centroLogistico=(CentroLogisticoPtr)obtenerMemoria(sizeof(CentroLogistico));
     centroLogistico->nombre=crearStringDinamico(nombre);
@@ -19,7 +19,8 @@ CentroLogisticoPtr crearCentroLogistico(char *nombre,ListaPtr listaPaquetes,List
     centroLogistico->listaPaquetes=listaPaquetes;
     centroLogistico->listaPersonas=listaPersonas;
     centroLogistico->listaVehiculos=listaVehiculos;
-    centroLogistico->listaRepartos=listaRepartos;
+    centroLogistico->listaRepartosAbiertos=listaRepartosAbiertos;
+    centroLogistico->listaRepartosCerrados=listaRepartosCerrados;
 
     return centroLogistico;
 }
@@ -32,7 +33,8 @@ CentroLogisticoPtr crearCentroLogisticoRapido(char *nombre) ///Crea un centro lo
     centroLogistico->listaPaquetes=crearLista();
     centroLogistico->listaPersonas=crearLista();
     centroLogistico->listaVehiculos=crearLista();
-    centroLogistico->listaRepartos=crearLista();
+    centroLogistico->listaRepartosAbiertos=crearLista();
+    centroLogistico->listaRepartosCerrados=crearLista();
 
     return centroLogistico;
 }
@@ -43,7 +45,8 @@ CentroLogisticoPtr destruirCentroLogistico(CentroLogisticoPtr centroLogistico)
     centroLogistico->listaPaquetes=destruirLista(centroLogistico->listaPaquetes,true);
     centroLogistico->listaPersonas=destruirLista(centroLogistico->listaPersonas,true);
     centroLogistico->listaVehiculos=destruirLista(centroLogistico->listaVehiculos,true);
-    centroLogistico->listaRepartos=destruirLista(centroLogistico->listaRepartos,true);
+    centroLogistico->listaRepartosAbiertos=destruirLista(centroLogistico->listaRepartosAbiertos,true);
+    centroLogistico->listaRepartosCerrados=destruirLista(centroLogistico->listaRepartosCerrados,true);
 
     free(centroLogistico);
 
@@ -66,7 +69,7 @@ ListaPtr getVehiculos(CentroLogisticoPtr centroLogistico)
 {
     return centroLogistico->listaVehiculos;
 }
-ListaPtr getRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
+ListaPtr getRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto)
 {
 	if(esRepartoAbierto)
 		return centroLogistico->repartosAbiertos;
@@ -90,7 +93,7 @@ void setVehiculos(CentroLogisticoPtr centroLogistico,ListaPtr listaVehiculos)
 {
     centroLogistico->listaVehiculos=listaVehiculos;
 }
-void setRepartos(CentroLogisticoPtr centroLogistico, ListaPtr repartos, bool esRepartoAbierto);
+void setRepartos(CentroLogisticoPtr centroLogistico, ListaPtr repartos, bool esRepartoAbierto)
 {
 	if(esRepartoAbierto)
 		centroLogistico->listaRepartosAbiertos = repartos;
@@ -216,7 +219,7 @@ void mostrarVehiculos(CentroLogisticoPtr centroLogistico)
     listaAux=destruirLista(listaAux,false);
     printf("\n");
 }
-void mostrarRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto);
+void mostrarRepartos(CentroLogisticoPtr centroLogistico, bool esRepartoAbierto)
 {
     ListaPtr listaAux=crearLista();
 	if(esRepartoAbierto)
@@ -378,7 +381,7 @@ void agregarVehiculo(CentroLogisticoPtr centroLogistico,VehiculoPtr vehiculo)
 {
     agregarDatoLista(centroLogistico->listaVehiculos,(VehiculoPtr)vehiculo);
 }
-void agregarReparto(CentroLogisticoPtr centroLogistico,RepartoPtr reparto, bool esRepartoAbierto);
+void agregarReparto(CentroLogisticoPtr centroLogistico,RepartoPtr reparto, bool esRepartoAbierto)
 {
 	if(esRepartoAbierto)
 		agregarDatoLista(getRepartos(centroLogistico,true), reparto);
@@ -398,7 +401,7 @@ bool insertarVehiculoLista(CentroLogisticoPtr centroLogistico,VehiculoPtr vehicu
 {
     return insertarDatoLista(centroLogistico->listaVehiculos,(VehiculoPtr)vehiculo,posicion);
 }
-bool insertarRepartoLista(CentroLogisticoPtr centroLogistico,RepartoPtr reparto,int posicion)
+bool insertarRepartoLista(CentroLogisticoPtr centroLogistico,RepartoPtr reparto,int posicion) ///SOLO PARA REPARTOS ABIERTOS
 {
     return insertarDatoLista(centroLogistico->listaRepartosAbiertos,(RepartoPtr)reparto,posicion);
 }
@@ -423,7 +426,7 @@ RepartoPtr removerReparto(CentroLogisticoPtr centroLogistico,int posicion,bool e
         return (RepartoPtr)removerDeLista(centroLogistico->listaRepartosCerrados,posicion);
 }
 ///NUEVA
-void cerrarReparto(CentroLogisticoPtr centroLogistico, int posicion)
+void cerrarRepartoCtroLogistico(CentroLogisticoPtr centroLogistico, int posicion)
 { ///extraemos el reparto de la lista de abiertos
     RepartoPtr repartoACerrar = removerReparto(centroLogistico,posicion,true);
 ///Obtenemos cada paquete de la pila y le cambiamos el estado a 3: "entregado"
@@ -553,7 +556,7 @@ void ordenarPorID(CentroLogisticoPtr centroLogistico)
     listaPaquetes = destruirLista(listaPaquetes, true);
 }
 
-void ordenarPorFechaDeSalida(CentroLogisticoPtr centroLogistico)
+void ordenarPorFechaSalida(CentroLogisticoPtr centroLogistico)
 {
     int i=0;
     ListaPtr listaRepartos=crearLista();
@@ -587,7 +590,7 @@ void ordenarPorFechaDeSalida(CentroLogisticoPtr centroLogistico)
     listaAux=destruirLista(listaAux,true);
     listaRepartos=destruirLista(listaRepartos,true);
 }
-void ordenarPorFechaDeRetorno(CentroLogisticoPtr centroLogistico)
+void ordenarPorFechaRetorno(CentroLogisticoPtr centroLogistico)
 {
     int i=0;
     ListaPtr listaRepartos=crearLista();
@@ -655,7 +658,7 @@ void ordenarPorFechaRepartos(CentroLogisticoPtr centroLogistico)
     listaAux=destruirLista(listaAux,true);
     listaRepartos=destruirLista(listaRepartos,true);
 }
-void ordenarPorNombreChoferRepartos(CentroLogisticoPtr centroLogistico)
+void ordenarPorNombreChofer(CentroLogisticoPtr centroLogistico)
 {
     int i=0;
     ListaPtr listaChoferes=crearLista();
@@ -688,7 +691,7 @@ void ordenarPorNombreChoferRepartos(CentroLogisticoPtr centroLogistico)
     setPersonas(centroLogistico,listaNuevaPersonas);
     listaChoferes=destruirLista(listaChoferes,true);
 }
-void ordenarPorApellidoChoferRepartos(CentroLogisticoPtr centroLogistico)
+void ordenarPorApellidoChofer(CentroLogisticoPtr centroLogistico)
 {
     int i=0;
     ListaPtr listaChoferes=crearLista();

@@ -32,7 +32,7 @@ typedef CentroLogistico * CentroLogisticoPtr;
 // listaVehiculos: puntero a lista representando la lista de vehiculos.
 // listaRepartos: puntero a lista representando la lista de repartos.
 //Devuelve un puntero de la estructura creada.
-CentroLogisticoPtr crearCentroLogistico(char *nombre,ListaPtr listaPaquetes,ListaPtr listaPersonas,ListaPtr listaVehiculos,ListaPtr listaRepartos);
+CentroLogisticoPtr crearCentroLogistico(char *nombre,ListaPtr listaPaquetes,ListaPtr listaPersonas,ListaPtr listaVehiculos,ListaPtr listaRepartosAbiertos,ListaPtr listaRepartosCerrados);
 //Operación:Crea la estructura Centro Logistico de forma aleatoria
 //Precondición:Que el centro logistico no haya sido creado
 //Postcondición:Se crea un centro logistico con nombre, lista de paquetes, lista de personas, lista de vehiculos y lista de repartos.
@@ -329,7 +329,7 @@ RepartoPtr removerReparto(CentroLogisticoPtr centroLogistico,int posicion,bool e
 //  centroLogistico: puntero a estructura que representa al centro logistico.
 //  posicion: entero representando la posicion del reparto a cerrar.
 //Devuelve: nada.
-void cerrarReparto(CentroLogisticoPtr centroLogistico, int posicion);
+void cerrarRepartoCtroLogistico(CentroLogisticoPtr centroLogistico, int posicion);
 
 //---------------------------------------Funciones para resetear listas------------------------------------------------
 
@@ -385,14 +385,14 @@ void ordenarPorID(CentroLogisticoPtr centroLogistico);
 //               segun su fecha de salida
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorFechaDeSalida(CentroLogisticoPtr centroLogistico);
+void ordenarPorFechaSalida(CentroLogisticoPtr centroLogistico);
 //Operación: ordena una lista de repartos por fecha de retorno, de X a Y.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados
 //               segun su fecha de retorno
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorFechaDeRetorno(CentroLogisticoPtr centroLogistico);
+void ordenarPorFechaRetorno(CentroLogisticoPtr centroLogistico);
 //Operación: ordena una lista de repartos por fecha de salida y retorno, de X a Y.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados
@@ -406,14 +406,14 @@ void ordenarPorFechaRepartos(CentroLogisticoPtr centroLogistico);
 //               nombre del chofer
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorNombreChoferRepartos(CentroLogisticoPtr centroLogistico);
+void ordenarPorNombreChofer(CentroLogisticoPtr centroLogistico);
 //Operación: ordena una lista de repartos alfabéticamente por apellido del chofer.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun el
 //               apellido del chofer
 //Parametros: puntero a la estructura centro logistico
 //Devuelve: nada
-void ordenarPorApellidoChoferRepartos(CentroLogisticoPtr centroLogistico);
+void ordenarPorApellidoChofer(CentroLogisticoPtr centroLogistico);
 //Operación: ordena una lista de repartos alfabéticamente por nombre y apellido del chofer.
 //Precondicion: centroLogistico debe haber sido creado anteriormente con crearCentroLogistico
 //Postcondicion: reinserta dentro de centro logistico todos los paquetes ordenados segun el

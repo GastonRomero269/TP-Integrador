@@ -38,7 +38,7 @@ RepartoPtr armarReparto(PersonaPtr chofer,VehiculoPtr vehiculo,FechaPtr fechaSal
 //Parámetros:
 // reparto: puntero a la estructura a liberar.
 //Devuelve NULL
-void cerrarReparto(CentroLogisticoPtr centroLogistico);
+RepartoPtr cerrarReparto(RepartoPtr reparto);
 
 //Operación: Obtencion de chofer.
 //Precondición: Repartos debe estar creado.

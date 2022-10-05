@@ -901,7 +901,7 @@ void menuArmarReparto(CentroLogisticoPtr centroLogistico)
 
 
         reparto=armarReparto(choferElegido,vehiculoElegido,fechaSalida,fechaRetorno,pilaPaquetesElegidos);
-        agregarReparto(centroLogistico,reparto);
+        agregarReparto(centroLogistico,reparto,true);
 
         printf("\n\nReparto armado exitosamente.\n\n");
         presionarEnterYLimpiarPantalla();
@@ -913,7 +913,7 @@ void menuBuscarReparto(CentroLogisticoPtr centroLogistico);
 void menuEliminarReparto(CentroLogisticoPtr centroLogistico);
 void menuCerrarReparto(CentroLogisticoPtr centroLogistico);
 void menuActualizarReparto(CentroLogisticoPtr centroLogistico);
-int menuMostrarRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
+void menuMostrarRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto)
 {
 	int op=0;
 	int op1=0;
@@ -962,55 +962,62 @@ int menuMostrarRepartos(CentroLogisticoPtr centroLogistico,bool esRepartoAbierto
             presionarEnterYLimpiarPantalla();
             break;
         case 3:
-
             do
             {
-
                 printf("ORDENAR Y MOSTRAR POR...");
 
-                printf("1. Ordenar listado por fecha de salida y mostrar\n");
-                printf("2. Ordenar listado por fecha de retorno y mostrar\n");
-                printf("3. Ordenar listado por fecha de salida y retorno y mostrar\n");
-                printf("4. Ordenar listado por nombre del chofer y mostrar\n");
-                printf("5. Ordenar listado por apellido del chofer y mostrar\n");
-                printf("6. Ordenar listado por nombre y apellido del chofer y mostrar\n");
+                printf("1. Fecha de salida\n");
+                printf("2. Fecha de retorno\n");
+                printf("3. Fecha de salida y retorno\n");
+                printf("4. Nombre del chofer\n");
+                printf("5. Apellido del chofer\n");
+                printf("6. Nombre y apellido del chofer\n");
                 printf("0. Volver\n\n");
 
                 printf("Elija una opcion: ");
-                scanf("%d".&op1);
+                scanf("%d",&op1);
 
                 system("cls");
                 switch(op1)
                 {
                 case 1:
-                    ordenarPorF
+                    ordenarPorFechaSalida(centroLogistico);
                     break;
                 case 2:
+                    ordenarPorFechaRetorno(centroLogistico);
                     break;
                 case 3:
+                    ordenarPorFechaRepartos(centroLogistico);
                     break;
                 case 4:
+                    ordenarPorNombreChofer(centroLogistico);
                     break;
                 case 5:
+                    ordenarPorApellidoChofer(centroLogistico);
                     break;
                 case 6:
+                    ordenarPorChoferRepartos(centroLogistico);
                     break;
                 case 0:
                     break;
                 default:
+                    printf("Opcion incorrecta.\n\n");
                     break;
                 }
 
+                if(op1>=1 && op1<=6) //si se eligio volver o una opcion invalida,
+                    mostrarRepartos(centroLogistico, esRepartoAbierto); //no mostramos nada.
+                presionarEnterYLimpiarPantalla();
                 system("cls");
             } while(op1!=0);
-            ordenarPorFechaRepartos(centroLogistico);
-            mostrarRepartos(centroLogistico, esRepartoAbierto);
-            presionarEnterYLimpiarPantalla();
+            break;
+        case 0:
+            break;
+        default:
+            printf("Opcion incorrecta\n\n");
             break;
         }
     } while(op!=0);
-
-    return op;
 }
 
 
